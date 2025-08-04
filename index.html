@@ -8,7 +8,7 @@
     <style>
         :root {
             --primary-color: #e50914;
-            --secondary-color: #f5f5f5;
+            --secondary-color: #f5f5f1;
             --dark-color: #333;
             --light-color: #fff;
             --gray-color: #777;
@@ -117,7 +117,7 @@
         }
 
         .nav-links li {
-            margin-left: 20px;
+            margin-left: 25px;
         }
 
         .nav-links a {
@@ -126,7 +126,7 @@
             font-weight: 500;
             transition: all 0.3s;
             font-size: 1rem;
-            padding: 5px 0;
+            padding: 8px 0;
             position: relative;
         }
 
@@ -155,6 +155,24 @@
 
         .nav-links .active::after {
             width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: white;
+            transition: all 0.3s;
         }
 
         /* Hero Section */
@@ -406,6 +424,20 @@
             font-size: 1.1rem;
         }
 
+        /* Picture Section */
+        .picture-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .picture-section img {
+            width: 981px;
+            height: 363px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
         /* Testimonials */
         .testimonials {
             background: var(--secondary-color);
@@ -618,6 +650,31 @@
             transform: translateY(-3px);
         }
 
+        /* Ad Containers */
+        .ad-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .top-ad {
+            margin-top: 80px;
+        }
+
+        .middle-ad {
+            margin: 30px 0;
+        }
+
+        .native-ad {
+            margin: 30px 0;
+        }
+
+        .bottom-ad {
+            margin: 30px 0;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
@@ -626,6 +683,12 @@
             
             .app-container {
                 gap: 30px;
+            }
+
+            .picture-section img {
+                width: 100%;
+                height: auto;
+                max-height: 363px;
             }
         }
 
@@ -639,41 +702,34 @@
             }
 
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
                 background: rgba(0, 0, 0, 0.95);
                 flex-direction: column;
                 align-items: center;
-                padding: 20px 0;
+                padding: 100px 0;
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
             }
 
             .nav-links.active {
-                display: flex;
+                right: 0;
             }
 
             .nav-links li {
-                margin: 10px 0;
+                margin: 15px 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 10px 20px;
             }
 
             .menu-toggle {
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 30px;
-                height: 21px;
-                cursor: pointer;
-            }
-
-            .menu-toggle span {
-                display: block;
-                height: 3px;
-                width: 100%;
-                background: white;
-                transition: all 0.3s;
             }
 
             .menu-toggle.active span:nth-child(1) {
@@ -769,7 +825,7 @@
     </style>
 </head>
 <body>
-    <!-- Notification for redirect - Updated to push notification style -->
+    <!-- Notification for redirect -->
     <div id="redirect-notification" class="redirect-notification">
         <div class="notification-icon">
             <i class="fas fa-external-link-alt"></i>
@@ -801,6 +857,20 @@
         </div>
     </header>
 
+    <!-- Top Banner Ad (720×90) -->
+    <div class="ad-container top-ad">
+        <script type="text/javascript"> 
+            atOptions = { 
+                'key' : 'ff2266f8bea792336807121652acef41', 
+                'format' : 'iframe', 
+                'height' : 90, 
+                'width' : 728, 
+                'params' : {} 
+            }; 
+        </script> 
+        <script type="text/javascript" src="//www.highperformanceformat.com/ff2266f8bea792336807121652acef41/invoke.js"></script>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
@@ -824,9 +894,9 @@
             <div class="movie-grid">
                 <!-- Movie 1 -->
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="The Dark Knight" class="movie-poster">
+                    <img src="https://i.postimg.cc/FFTF4pD3/Screenshot-20250804-233048-1.jpg" alt="The Dark Knight" class="movie-poster">
                     <div class="movie-info">
-                        <h3 class="movie-title">The Dark Knight</h3>
+                        <h3 class="movie-title">Hot Sexy 🥵</h3>
                         <div class="movie-meta">
                             <span>2025</span>
                             <span class="rating">9.0 ★</span>
@@ -913,6 +983,21 @@
             </div>
         </div>
     </section>
+
+    <!-- Middle Banner Ad (320×50) -->
+    <div class="ad-container middle-ad">
+        <script type="text/javascript"> 
+            atOptions = { 
+                'key' : '7c3ce7661b6276032ffb29201de896cb', 
+                'format' : 'iframe', 
+                'height' : 50, 
+                'width' : 320, 
+                'params' : {} 
+            }; 
+        </script> 
+        <script type="text/javascript" src="//www.highperformanceformat.com/7c3ce7661b6276032ffb29201de896cb/invoke.js"></script>
+    </div>
+
     <!-- Web Series Section -->
     <section class="section" id="series">
         <div class="container">
@@ -1021,6 +1106,12 @@
         </div>
     </section>
 
+    <!-- Native Ad -->
+    <div class="ad-container native-ad">
+        <script async="async" data-cfasync="false" src="//pl27320837.profitableratecpm.com/cc2a810a45805db35a111260ba3ecd62/invoke.js"></script> 
+        <div id="container-cc2a810a45805db35a111260ba3ecd62"></div>
+    </div>
+
     <!-- App Section -->
     <section class="section app-section" id="app">
         <div class="container app-container">
@@ -1049,6 +1140,27 @@
             </div>
         </div>
     </section>
+
+    <!-- Picture Section -->
+    <section class="picture-section">
+        <div class="container">
+            <img src="https://i.postimg.cc/Bnp1YgwT/20250804-224846.jpg" alt="Featured Content">
+        </div>
+    </section>
+
+    <!-- Bottom Banner Ad (300×250) -->
+    <div class="ad-container bottom-ad">
+        <script type="text/javascript"> 
+            atOptions = { 
+                'key' : '674846739dd454e40f89892202117c13', 
+                'format' : 'iframe', 
+                'height' : 250, 
+                'width' : 300, 
+                'params' : {} 
+            }; 
+        </script> 
+        <script type="text/javascript" src="//www.highperformanceformat.com/674846739dd454e40f89892202117c13/invoke.js"></script>
+    </div>
 
     <!-- Newsletter -->
     <section class="section">
@@ -1119,6 +1231,12 @@
     <div class="back-to-top" id="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- Popunder Ad -->
+    <script type='text/javascript' src='//pl27320830.profitableratecpm.com/8f/68/39/8f6839b653e6aa4dd955ca7a7fad761d.js'></script>
+
+    <!-- Social bar -->
+    <script type='text/javascript' src='//pl27335701.profitableratecpm.com/27/79/68/277968a18ece7f677e6f69fd0b468bb2.js'></script>
 
     <script>
         // Mobile Menu Toggle
@@ -1207,32 +1325,46 @@
             });
         });
 
-        // Redirect Notification System - Updated
+        // Redirect Notification System
         const redirectNotification = document.getElementById('redirect-notification');
         const countdownElement = document.getElementById('countdown');
         
-        // Check if the user has already seen the notification
-        if (!localStorage.getItem('redirectShown')) {
-            let countdown = 3;
-            let countdownInterval;
+        // Show notification after 1 second
+        setTimeout(() => {
+            redirectNotification.classList.add('show');
             
-            // Show notification after 3 seconds
-            setTimeout(() => {
-                redirectNotification.classList.add('show');
+            let countdown = 3;
+            countdownElement.textContent = countdown;
+            
+            const countdownInterval = setInterval(() => {
+                countdown--;
                 countdownElement.textContent = countdown;
                 
-                // Start countdown
-                countdownInterval = setInterval(() => {
-                    countdown--;
-                    countdownElement.textContent = countdown;
-                    
-                    if (countdown <= 0) {
-                        clearInterval(countdownInterval);
-                        localStorage.setItem('redirectShown', 'true');
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'https://www.profitableratecpm.com/x5zdq1110v?key=ed3bc3cebe23be89da88f27ef89a19ec';
+                }
+            }, 1000);
+        }, 1000);
+
+        // Load ads after page content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load images
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
                     }
-                }, 1000);
-            }, 3000);
-        }
+                });
+            });
+
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        });
     </script>
 </body>
 </html>
