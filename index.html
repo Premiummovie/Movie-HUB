@@ -3,1103 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie HuB</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Elite Crypto Investors - Claim Your Exclusive Offer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary-color: #e50914;
-            --secondary-color: #f5f5f1;
-            --dark-color: #333;
-            --light-color: #fff;
-            --gray-color: #777;
-            --border-color: #e0e0e0;
-            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --primary: #2a52be;
+            --secondary: #ff6b00;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #28a745;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: #f5f7fa;
+            color: #333;
             line-height: 1.6;
         }
-
-        /* Redirect Notification - Updated to top position */
-        .redirect-notification {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            z-index: 9999;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .redirect-notification.show {
-            transform: translateY(0);
-        }
-
-        .notification-icon {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: var(--primary-color);
-        }
-
-        .notification-content {
-            flex: 1;
-            max-width: 1200px;
-        }
-
-        .notification-content p {
-            margin-bottom: 5px;
-        }
-
-        .countdown {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            overflow: hidden;
         }
-
-        /* Header */
+        
         header {
+            background-color: var(--dark);
+            color: white;
             padding: 15px 0;
-            background-color: rgba(0, 0, 0, 0.9);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        header.scrolled {
-            padding: 10px 0;
-            background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Adjust header position when notification is shown */
-        .notification-active header {
-            top: 60px;
-        }
-
-        .header-container {
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            margin-right: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 25px;
-        }
-
-        .nav-links a {
-            color: var(--light-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 1rem;
-            padding: 8px 0;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links .active {
-            color: var(--primary-color);
-        }
-
-        .nav-links .active::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: white;
-            transition: all 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
-            position: relative;
-            display: flex;
-            align-items: center;
-            color: var(--light-color);
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--light-color);
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
-        }
-
-        .btn-lg {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--light-color);
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Sections */
-        .section {
-            padding: 100px 0;
-            scroll-margin-top: 80px;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
+            font-size: 24px;
             font-weight: 700;
+            color: white;
         }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
+        
+        .logo span {
+            color: var(--secondary);
         }
-
-        .section-subtitle {
-            color: var(--gray-color);
-            margin-bottom: 40px;
-            max-width: 700px;
-            font-size: 1.1rem;
-        }
-
-        /* Movie Grid */
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .movie-card {
-            background: var(--light-color);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .movie-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .movie-poster {
+        
+        /* Top Banner Ad */
+        .top-ad {
             width: 100%;
-            height: 330px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .movie-card:hover .movie-poster {
-            transform: scale(1.05);
-        }
-
-        .movie-info {
-            padding: 20px;
-        }
-
-        .movie-title {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .movie-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--gray-color);
-            font-size: 0.9rem;
-        }
-
-        .rating {
-            color: #ffc107;
-            font-weight: bold;
-        }
-
-        /* Categories Section */
-        .category-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            flex-wrap: wrap;
-        }
-
-        .category-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-            font-weight: 600;
-            color: var(--gray-color);
-            margin-right: 5px;
-        }
-
-        .category-tab.active, .category-tab:hover {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        /* App Section */
-        .app-section {
-            background: var(--secondary-color);
-            border-radius: 15px;
-            margin: 40px 0;
-            padding: 60px 0;
-        }
-
-        .app-container {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .app-content {
-            flex: 1;
-        }
-
-        .app-image {
-            flex: 1;
             text-align: center;
-        }
-
-        .app-image img {
-            max-width: 350px;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-        }
-
-        .app-buttons {
+            margin: 10px 0;
+            min-height: 90px;
+            background: #f1f1f1;
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .app-btn {
-            display: flex;
+            justify-content: center;
             align-items: center;
-            background: var(--dark-color);
-            color: var(--light-color);
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .app-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .app-btn i {
-            font-size: 1.8rem;
-            margin-right: 12px;
-        }
-
-        .app-btn-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-btn-text span:first-child {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .app-btn-text span:last-child {
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* Picture Section */
-        .picture-section {
-            margin: 60px 0;
+        
+        /* Middle Banner Ad */
+        .middle-ad {
+            width: 100%;
             text-align: center;
+            margin: 20px 0;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-        .picture-section img {
-            width: 981px;
-            height: 363px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--secondary-color);
+        
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
             padding: 80px 0;
+            text-align: center;
         }
-
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,107,0,0.4);
+            background-color: #ff7b00;
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
-
+        
         .testimonial-card {
-            background: var(--light-color);
-            padding: 30px;
+            background-color: white;
             border-radius: 10px;
-            box-shadow: var(--card-shadow);
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--dark-color);
+        
+        .pricing {
+            padding: 80px 0;
+            background-color: white;
         }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-
-        .author-info h4 {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            color: var(--gray-color);
-            font-size: 0.9rem;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            text-align: center;
-            padding: 60px 0;
-            background: linear-gradient(135deg, rgba(229,9,20,0.9) 0%, rgba(193,7,16,0.9) 100%);
-            color: var(--light-color);
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-
-        .newsletter h2 {
-            margin-bottom: 20px;
-        }
-
-        .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            font-size: 1rem;
-        }
-
-        .newsletter-form button {
-            padding: 0 25px;
-            background: var(--dark-color);
-            color: var(--light-color);
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: #222;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-color);
-            color: var(--light-color);
-            padding: 60px 0 20px;
-        }
-
-        .footer-container {
+        
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--light-color);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .footer-about p {
-            opacity: 0.8;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--light-color);
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .footer-links h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--light-color);
-        }
-
-        .footer-bottom {
+        
+        .pricing-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 40px 30px;
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: #c11119;
-            transform: translateY(-3px);
-        }
-
-        /* Ad Containers */
-        .ad-container {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
             overflow: hidden;
         }
-
-        .top-ad {
-            margin-top: 80px;
+        
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            border-bottom-left-radius: 10px;
         }
-
-        .middle-ad {
-            margin: 30px 0;
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
-
-        .native-ad {
-            margin: 30px 0;
+        
+        .claim-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
         }
-
-        .bottom-ad {
-            margin: 30px 0;
+        
+        .claim-container {
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .app-container {
-                gap: 30px;
-            }
-
-            .picture-section img {
-                width: 100%;
-                height: auto;
-                max-height: 363px;
-            }
+        
+        .claim-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            position: relative;
         }
-
+        
+        /* Native Ad Container */
+        .native-ad-container {
+            margin-bottom: 30px;
+            width: 100%;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .claim-box h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .claim-steps {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .claim-steps li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .claim-steps li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .timer {
+            font-size: 18px;
+            color: #dc3545;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .success-icon {
+            font-size: 60px;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        /* Social Bar */
+        .social-bar {
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
         @media (max-width: 768px) {
-            header {
-                padding: 10px 0;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.95);
-                flex-direction: column;
-                align-items: center;
-                padding: 100px 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-                transition: right 0.3s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 10px 20px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .hero {
-                height: auto;
-                padding: 150px 0 100px;
-                text-align: center;
-            }
-
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 32px;
             }
-
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
+            .hero p {
+                font-size: 18px;
             }
-
-            .btn-outline {
-                margin-left: 0;
+            .section-title h2 {
+                font-size: 28px;
             }
-
-            .app-container {
-                flex-direction: column;
-            }
-
-            .app-content {
-                order: 2;
-                text-align: center;
-            }
-
-            .app-buttons {
-                justify-content: center;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-form input {
-                border-radius: 5px;
-                margin-bottom: 10px;
-            }
-
-            .newsletter-form button {
-                border-radius: 5px;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
-            .movie-poster {
-                height: 250px;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .app-buttons {
-                flex-direction: column;
-            }
-
-            .section {
-                padding: 70px 0;
-                scroll-margin-top: 60px;
+            .price {
+                font-size: 36px;
             }
         }
     </style>
+    
+    <!-- Top Banner Ad Script -->
+    <script type="text/javascript">
+        atOptions = {
+            'key': 'c5c88b2c837a3d453109c356bc3cba63',
+            'format': 'iframe',
+            'height': 90,
+            'width': 728,
+            'params': {}
+        };
+    </script>
+    <script type="text/javascript" src="//regularseatradio.com/c5c88b2c837a3d453109c356bc3cba63/invoke.js"></script>
 </head>
 <body>
-    <!-- Notification for redirect -->
-    <div id="redirect-notification" class="redirect-notification">
-        <div class="notification-icon">
-            <i class="fas fa-external-link-alt"></i>
-        </div>
-        <div class="notification-content">
-            <p>You will be redirected to our partner site in <span id="countdown" class="countdown">5</span> seconds</p>
-        </div>
+    <!-- Top Banner Ad -->
+    <div class="top-ad">
+        <script type="text/javascript">
+            atOptions = {
+                'key': 'c5c88b2c837a3d453109c356bc3cba63',
+                'format': 'iframe',
+                'height': 90,
+                'width': 728,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/c5c88b2c837a3d453109c356bc3cba63/invoke.js"></script>
     </div>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-film"></i>
-                Movie Hub
+    <header>
+        <div class="container header-content">
+            <div class="logo">Elite<span>Crypto</span></div>
+            <div class="header-cta">
+                <a href="#claim" class="cta-button">Claim Now</a>
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#movies">Movies</a></li>
-                <li><a href="#series">TV Shows</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#app">Download App</a></li>
-            </ul>
         </div>
     </header>
 
-    <!-- Top Banner Ad (720×90) -->
-    <div class="ad-container top-ad">
-        <script type="text/javascript"> 
-            atOptions = { 
-                'key' : 'ff2266f8bea792336807121652acef41', 
-                'format' : 'iframe', 
-                'height' : 90, 
-                'width' : 728, 
-                'params' : {} 
-            }; 
-        </script> 
-        <script type="text/javascript" src="//www.highperformanceformat.com/ff2266f8bea792336807121652acef41/invoke.js"></script>
+    <section class="hero">
+        <div class="container">
+            <h1>Claim Your Exclusive Crypto Opportunity</h1>
+            <p>Limited-time offer! Secure your spot in our elite investment program with guaranteed 8-12% monthly returns.</p>
+            <a href="#claim" class="cta-button">CLAIM YOUR SPOT NOW</a>
+        </div>
+    </section>
+
+    <!-- Middle Banner Ad -->
+    <div class="middle-ad">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '8ac60b63bca7574d012e68531d5cd632',
+                'format': 'iframe',
+                'height': 50,
+                'width': 320,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="features">
         <div class="container">
-            <div class="hero-content">
-                <h1>Unlimited movies, TV shows, and more.</h1>
-                <p>Watch anywhere. Cancel anytime. Premium entertainment at your fingertips.</p>
-                <div class="btn-group">
-                    <a href="#" class="btn btn-lg">Watch Now</a>
-                    <a href="#" class="btn btn-lg btn-outline">Learn More</a>
+            <div class="section-title">
+                <h2>Why Thousands Are Claiming Their Spot</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Proven Returns</h3>
+                    <p>Consistent 8-12% monthly returns since 2018, verified by independent auditors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure & Trusted</h3>
+                    <p>98% of assets in cold storage with multi-signature wallet protection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Limited Availability</h3>
+                    <p>Only 17 spots remaining at this exclusive offer price.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Movies Section -->
-    <section class="section" id="movies">
-        <div class="container">
-            <h2 class="section-title">Featured Movies</h2>
-            <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics.</p>
-            
-            <div class="movie-grid">
-                <!-- Movie 1 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/FFTF4pD3/Screenshot-20250804-233048-1.jpg" alt="The Dark Knight" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Hot Sexy 🥵</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">9.0 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 2 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg" alt="The Godfather" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Godfather</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 3 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg" alt="Pulp Fiction" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Pulp Fiction</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">8.9 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 4 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg" alt="The Shawshank Redemption" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Shawshank Redemption</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">9.3 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 5 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Goodfellas" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Goodfellas</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 6 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man: No Way Home" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Spider-Man: No Way Home</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <span class="rating">8.2 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 7 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Parasite</h3>
-                        <div class="movie-meta">
-                            <span>2019</span>
-                            <span class="rating">8.5 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Movie 8 -->
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="The Shining" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Shining</h3>
-                        <div class="movie-meta">
-                            <span>1980</span>
-                            <span class="rating">8.4 ★</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Middle Banner Ad (320×50) -->
-    <div class="ad-container middle-ad">
-        <script type="text/javascript"> 
-            atOptions = { 
-                'key' : '7c3ce7661b6276032ffb29201de896cb', 
-                'format' : 'iframe', 
-                'height' : 50, 
-                'width' : 320, 
-                'params' : {} 
-            }; 
-        </script> 
-        <script type="text/javascript" src="//www.highperformanceformat.com/7c3ce7661b6276032ffb29201de896cb/invoke.js"></script>
+    <!-- Social Bar -->
+    <div class="social-bar">
+        <script type='text/javascript' src='//regularseatradio.com/7a/1a/90/7a1a90ecb23513db59bec586e4062520.js'></script>
     </div>
 
-    <!-- Web Series Section -->
-    <section class="section" id="series">
+    <section class="testimonials">
         <div class="container">
-            <h2 class="section-title">Popular Web Series</h2>
-            <p class="section-subtitle">Binge-watch the most talked-about shows from around the world.</p>
-            
-            <div class="category-tabs">
-                <div class="category-tab active">All</div>
-                <div class="category-tab">Action</div>
-                <div class="category-tab">Drama</div>
-                <div class="category-tab">Comedy</div>
-                <div class="category-tab">Sci-Fi</div>
-                <div class="category-tab">Thriller</div>
-                <div class="category-tab">Fantasy</div>
+            <div class="section-title">
+                <h2>Success Stories From Those Who Claimed</h2>
             </div>
-            <div class="movie-grid">
-                <!-- Series 1 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/P5PfRDFj/Screenshot-20250727-004028-1.jpg" alt="Breaking Bad" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Breaking Bad</h3>
-                        <div class="movie-meta">
-                            <span>2008-2013</span>
-                            <span class="rating">9.5 ★</span>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I claimed my spot 6 months ago with $500 and have since grown to $12,000. This was the best financial decision I ever made!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D.">
+                        </div>
+                        <div class="author-info">
+                            <h4>John D.</h4>
+                            <p>Claimed: March 2023</p>
                         </div>
                     </div>
                 </div>
-                <!-- Series 2 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/Y9wp0s2r/Screenshot-20250727-003906-1.jpg" alt="Stranger Things" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Stranger Things</h3>
-                        <div class="movie-meta">
-                            <span>2016-Present</span>
-                            <span class="rating">8.7 ★</span>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The day I claimed my spot changed everything. I now earn more passively than from my full-time job."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Claimed: January 2023</p>
                         </div>
                     </div>
                 </div>
-                <!-- Series 3 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/3Jw3kphv/Screenshot-20250727-003836-1.jpg" alt="The Mandalorian" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Mandalorian</h3>
-                        <div class="movie-meta">
-                            <span>2019-Present</span>
-                            <span class="rating">8.5 ★</span>
-                        </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I almost didn't claim my spot due to skepticism. So glad I did - my portfolio is up 320% in 5 months!"</p>
                     </div>
-                </div>
-                <!-- Series 4 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/fLKhLWgC/Screenshot-20250727-003927-1.jpg" alt="Money Heist" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Money Heist</h3>
-                        <div class="movie-meta">
-                            <span>2017-2021</span>
-                            <span class="rating">8.3 ★</span>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Robert T.">
                         </div>
-                    </div>
-                </div>
-                <!-- Series 5 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/158LxKPJ/Screenshot-20250727-003742-1.jpg" alt="The Witcher" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Witcher</h3>
-                        <div class="movie-meta">
-                            <span>2019-Present</span>
-                            <span class="rating">8.0 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Series 6 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/ZYNJpZvT/Screenshot-20250727-005324-1.jpg" alt="The Last of Us" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Sexy 🔥</h3>
-                        <div class="movie-meta">
-                            <span>2023-Present</span>
-                            <span class="rating">8.8 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Series 7 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/xd7SNF0J/Screenshot-20250727-005446-1.jpg" alt="Wednesday" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Wednesday</h3>
-                        <div class="movie-meta">
-                            <span>2022-Present</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Series 8 -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/6QLkH10m/Screenshot-20250726-211948-1.jpg" alt="Peaky Blinders" class="movie-poster">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Alyx Star</h3>
-                        <div class="movie-meta">
-                            <span>2013-2022</span>
-                            <span class="rating">8.8 ★</span>
+                        <div class="author-info">
+                            <h4>Robert T.</h4>
+                            <p>Claimed: November 2022</p>
                         </div>
                     </div>
                 </div>
@@ -1107,293 +469,178 @@
         </div>
     </section>
 
-    <!-- Native Ad -->
-    <div class="ad-container native-ad">
-        <script async="async" data-cfasync="false" src="//pl27320837.profitableratecpm.com/cc2a810a45805db35a111260ba3ecd62/invoke.js"></script> 
-        <div id="container-cc2a810a45805db35a111260ba3ecd62"></div>
-    </div>
-
-    <!-- App Section -->
-    <section class="section app-section" id="app">
-        <div class="container app-container">
-            <div class="app-content">
-                <h2 class="section-title">Download the Movie Hub App</h2>
-                <p class="section-subtitle">Watch your favorite movies and TV shows on the go. Download the Movie Hub app now and enjoy unlimited entertainment anywhere, anytime.</p>
-                <div class="app-buttons">
-                    <a href="#" class="app-btn">
-                        <i class="fab fa-apple"></i>
-                        <div class="app-btn-text">
-                            <span>Download on the</span>
-                            <span>App Store</span>
-                        </div>
-                    </a>
-                    <a href="#" class="app-btn">
-                        <i class="fab fa-google-play"></i>
-                        <div class="app-btn-text">
-                            <span>Get it on</span>
-                            <span>Google Play</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="app-image">
-                <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png" alt="Movie Hub App">
-            </div>
-        </div>
-    </section>
-
-    <!-- Picture Section -->
-    <section class="picture-section">
+    <section class="pricing">
         <div class="container">
-            <img src="https://i.postimg.cc/Bnp1YgwT/20250804-224846.jpg" alt="Featured Content">
-        </div>
-    </section>
-
-    <!-- Bottom Banner Ad (300×250) -->
-    <div class="ad-container bottom-ad">
-        <script type="text/javascript"> 
-            atOptions = { 
-                'key' : '674846739dd454e40f89892202117c13', 
-                'format' : 'iframe', 
-                'height' : 250, 
-                'width' : 300, 
-                'params' : {} 
-            }; 
-        </script> 
-        <script type="text/javascript" src="//www.highperformanceformat.com/674846739dd454e40f89892202117c13/invoke.js"></script>
-    </div>
-
-    <!-- Newsletter -->
-    <section class="section">
-        <div class="container">
-            <div class="newsletter">
-                <h2>Stay Updated</h2>
-                <p>Subscribe to our newsletter for the latest movie releases, exclusive content, and special offers.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
+            <div class="section-title">
+                <h2>Choose Your Claim Option</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$250 <span>minimum</span></div>
+                    <ul class="pricing-features">
+                        <li>5% Daily Returns</li>
+                        <li>Basic Trading Signals</li>
+                        <li>Email Support</li>
+                        <li>Portfolio Tracking</li>
+                    </ul>
+                    <a href="#claim" class="cta-button">CLAIM THIS OFFER</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="popular-badge">MOST CLAIMED</div>
+                    <h3>Professional</h3>
+                    <div class="price">$1,000 <span>minimum</span></div>
+                    <ul class="pricing-features">
+                        <li>8% Daily Returns</li>
+                        <li>Advanced Signals</li>
+                        <li>Priority Support</li>
+                        <li>Weekly Webinars</li>
+                    </ul>
+                    <a href="#claim" class="cta-button">CLAIM THIS OFFER</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>VIP</h3>
+                    <div class="price">$5,000 <span>minimum</span></div>
+                    <ul class="pricing-features">
+                        <li>12% Daily Returns</li>
+                        <li>Premium Signals</li>
+                        <li>24/7 Support</li>
+                        <li>Private Coaching</li>
+                    </ul>
+                    <a href="#claim" class="cta-button">CLAIM THIS OFFER</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="claim-section" id="claim">
+        <div class="container">
+            <div class="claim-container">
+                <h2>Ready To Claim Your Spot?</h2>
+                <p>Only 3 spots remaining at this exclusive offer</p>
+                
+                <div class="claim-box">
+                    <!-- Native Ad Above Claim Button -->
+                    <div class="native-ad-container">
+                        <script async="async" data-cfasync="false" src="//regularseatradio.com/8bcb83aa1a9b50517463e7953e55a2c0/invoke.js"></script>
+                        <div id="container-8bcb83aa1a9b50517463e7953e55a2c0"></div>
+                    </div>
+                    
+                    <h3>Claim Process</h3>
+                    <ol class="claim-steps">
+                        <li>Click the "Claim Now" button below</li>
+                        <li>Complete quick verification</li>
+                        <li>Receive your exclusive investor access</li>
+                        <li>Start earning within 24 hours</li>
+                    </ol>
+                    
+                    <div class="timer" id="timer">
+                        Hurry! Offer expires in: 14:32:15
+                    </div>
+                    
+                    <button id="claimButton" class="cta-button" style="width: 100%;">CLAIM NOW</button>
+                    
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <h2 style="color: var(--success); margin-bottom: 15px;">Claim Successful!</h2>
+                        <p style="font-size: 18px; margin-bottom: 25px;">Your exclusive spot has been reserved! Our team will contact you within 15 minutes to complete your access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <a href="#" class="footer-logo">
-                        <i class="fas fa-film"></i> Movie Hub
-                    </a>
-                    <p>The ultimate destination for movie lovers. Stream thousands of movies and TV shows in stunning quality.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#movies">Movies</a></li>
-                        <li><a href="#series">TV Shows</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#app">Download App</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">System Requirements</a></li>
-                    </ul>
-                </div>
+            <div class="footer-links">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Movie Hub. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary-color);"></i> by Movie Hub Team</p>
-            </div>
+            <p class="copyright">© 2023 Elite Crypto Investors. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
-    <!-- Popunder Ad -->
-    <script type='text/javascript' src='//regularseatradio.com/8f/68/39/8f6839b653e6aa4dd955ca7a7fad761d.js'></script>
-
-    <!-- Social bar -->
-    <script type='text/javascript' src='//pl27335701.profitableratecpm.com/27/79/68/277968a18ece7f677e6f69fd0b468bb2.js'></script>
+    <!-- Popunder Ad Script -->
+    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('nav-links');
-
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Sticky Header
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth Scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        // কাউন্টডাউন টাইমার
+        function updateTimer() {
+            let hours = 14;
+            let minutes = 32;
+            let seconds = 15;
+            
+            const timer = setInterval(() => {
+                seconds--;
+                if(seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                if(minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                }
+                if(hours < 0) {
+                    clearInterval(timer);
+                    document.getElementById('timer').innerHTML = "OFFER EXPIRED!";
+                    document.getElementById('claimButton').disabled = true;
+                    document.getElementById('claimButton').style.backgroundColor = "#ccc";
+                    return;
+                }
                 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                document.getElementById('timer').innerHTML = `Hurry! Offer expires in: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+        
+        // ক্লেইম বাটন ক্লিক হ্যান্ডলার
+        document.getElementById('claimButton').addEventListener('click', function() {
+            // বাটন লুকানো
+            this.style.display = 'none';
+            
+            // সাকসেস মেসেজ দেখানো
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // কনভার্সন ট্র্যাকিং
+            console.log('Claim Now button clicked - conversion tracked');
+            
+            // স্পট কাউন্ট কমানো
+            updateSpotCount();
+        });
+        
+        // স্পট কাউন্ট আপডেট
+        function updateSpotCount() {
+            let spots = 3;
+            const spotElement = document.createElement('div');
+            spotElement.innerHTML = `<p style="text-align: center; color: #dc3545; font-weight: bold;">Only ${spots} spots remaining!</p>`;
+            document.querySelector('.claim-box').appendChild(spotElement);
+            
+            const counter = setInterval(() => {
+                spots--;
+                if(spots <= 0) {
+                    clearInterval(counter);
+                    spotElement.innerHTML = '<p style="text-align: center; color: #dc3545; font-weight: bold;">ALL SPOTS CLAIMED!</p>';
+                    document.getElementById('claimButton').style.display = 'none';
+                } else {
+                    spotElement.innerHTML = `<p style="text-align: center; color: #dc3545; font-weight: bold;">Only ${spots} spots remaining!</p>`;
+                }
+            }, 15000);
+        }
+        
+        // পেজ লোড হলে টাইমার শুরু
+        window.onload = function() {
+            updateTimer();
+            
+            // স্ক্রল এনিমেশন
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
-                }
-            });
-        });
-
-        // Back to Top Button
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('active');
-            } else {
-                backToTopButton.classList.remove('active');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Active link highlighting
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-links a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Redirect Notification System with 5-second delay and max 2 redirects
-        const redirectNotification = document.getElementById('redirect-notification');
-        const countdownElement = document.getElementById('countdown');
-        
-        // Check if user has reached max redirects
-        const maxRedirects = 2;
-        const redirectCount = localStorage.getItem('redirectCount') || 0;
-        
-        if (redirectCount < maxRedirects) {
-            // Show notification after 5 seconds
-            setTimeout(() => {
-                document.body.classList.add('notification-active');
-                redirectNotification.classList.add('show');
-                
-                let countdown = 5;
-                countdownElement.textContent = countdown;
-                
-                const countdownInterval = setInterval(() => {
-                    countdown--;
-                    countdownElement.textContent = countdown;
-                    
-                    if (countdown <= 0) {
-                        clearInterval(countdownInterval);
-                        // Increment redirect count
-                        localStorage.setItem('redirectCount', parseInt(redirectCount) + 1);
-                        window.location.href = 'https://regularseatradio.com/x5zdq1110v?key=ed3bc3cebe23be89da88f27ef89a19ec';
-                    }
-                }, 1000);
-            }, 5000); // 5-second delay before showing notification
-            
-            // Adjust header position when notification is shown
-            const header = document.getElementById('header');
-            const notificationObserver = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.attributeName === 'class') {
-                        if (redirectNotification.classList.contains('show')) {
-                            document.body.classList.add('notification-active');
-                        } else {
-                            document.body.classList.remove('notification-active');
-                        }
-                    }
                 });
             });
-            
-            notificationObserver.observe(redirectNotification, {
-                attributes: true,
-                attributeFilter: ['class']
-            });
-        }
-
-        // Load ads after page content is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lazy load images
-            const lazyImages = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        observer.unobserve(img);
-                    }
-                });
-            });
-
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
-            });
-        });
+        };
     </script>
 </body>
 </html>
