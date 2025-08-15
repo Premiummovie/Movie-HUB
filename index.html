@@ -928,14 +928,14 @@
     <center>
         <script type="text/javascript">
             atOptions = {
-                'key' : 'c5c88b2c837a3d453109c356bc3cba63',
+                'key' : '8ac60b63bca7574d012e68531d5cd632',
                 'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
+                'height' : 50,
+                'width' : 320,
                 'params' : {}
             };
         </script>
-        <script type="text/javascript" src="//regularseatradio.com/c5c88b2c837a3d453109c356bc3cba63/invoke.js"></script>
+        <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
     </center>
 
     <!-- Code Display System -->
@@ -1320,16 +1320,6 @@
     </div>
 
     <!-- Modals -->
-    <!-- Welcome Message Modal -->
-    <div id="welcome-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Welcome to Movie Hub!</h2>
-            <p>Your ultimate destination for movies and TV shows is here.</p>
-            <p>Explore our vast library, discover new favorites, and enjoy unlimited entertainment. We hope you have a great time!</p>
-        </div>
-    </div>
-
     <!-- Terms of Service Modal -->
     <div id="terms-modal" class="modal">
         <div class="modal-content">
@@ -1509,15 +1499,6 @@
                 localStorage.setItem('cookiesAccepted', 'true');
             });
 
-            // Welcome Message Modal
-            const welcomeModal = document.getElementById('welcome-modal');
-            if (!localStorage.getItem('welcomeMessageShown')) {
-                setTimeout(() => {
-                    welcomeModal.style.display = 'block';
-                    document.body.classList.add('modal-open');
-                }, 2500); // Show after 2.5 seconds
-            }
-
             // Modal Functionality
             const modalTriggers = document.querySelectorAll('[data-modal-target]');
             modalTriggers.forEach(trigger => {
@@ -1533,9 +1514,6 @@
 
             function closeModal(modal) {
                 modal.style.display = "none";
-                if (modal.id === 'welcome-modal') {
-                    localStorage.setItem('welcomeMessageShown', 'true');
-                }
                 const anyModalOpen = Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block');
                 if (!anyModalOpen) {
                     document.body.classList.remove('modal-open');
