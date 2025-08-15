@@ -29,6 +29,10 @@
             line-height: 1.6;
         }
 
+        body.modal-open {
+            overflow: hidden;
+        }
+
         /* Code Display System */
         .code-display {
             position: fixed;
@@ -60,50 +64,6 @@
             opacity: 0.8;
         }
 
-        /* Redirect Notification - Updated to top position */
-        .redirect-notification {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            z-index: 9999;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .redirect-notification.show {
-            transform: translateY(0);
-        }
-
-        .notification-icon {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: var(--primary-color);
-        }
-
-        .notification-content {
-            flex: 1;
-            max-width: 1200px;
-        }
-
-        .notification-content p {
-            margin-bottom: 5px;
-        }
-
-        .countdown {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -126,11 +86,6 @@
             padding: 10px 0;
             background-color: rgba(0, 0, 0, 0.95);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Adjust header position when notification is shown */
-        .notification-active header {
-            top: 60px;
         }
 
         .header-container {
@@ -690,30 +645,109 @@
             transform: translateY(-3px);
         }
 
-        /* Ad Containers */
-        .ad-container {
-            margin: 20px 0;
+        /* Cookie Consent Banner */
+        .cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: var(--light-color);
+            padding: 15px 20px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            overflow: hidden;
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .top-ad {
-            margin-top: 80px;
+        .cookie-consent-banner.show {
+            transform: translateY(0);
         }
 
-        .middle-ad {
-            margin: 30px 0;
+        .cookie-consent-banner p {
+            margin: 0;
+            flex-grow: 1;
         }
 
-        .native-ad {
-            margin: 30px 0;
+        .cookie-consent-banner a {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
 
-        .bottom-ad {
-            margin: 30px 0;
+        .cookie-accept-btn {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
+
+        .cookie-accept-btn:hover {
+            background-color: #c11119;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10001; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
 
         /* Responsive */
         @media (max-width: 992px) {
@@ -838,6 +872,10 @@
                 padding: 10px 20px;
                 min-width: 160px;
             }
+             .cookie-consent-banner {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media (max-width: 576px) {
@@ -861,24 +899,49 @@
                 padding: 70px 0;
                 scroll-margin-top: 60px;
             }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 20px;
+            }
         }
+        
+        /* Custom spacing adjustments to reduce empty space based on user feedback */
+        #series {
+            padding-top: 20px; /* Reduces space above "Popular Web Series" */
+        }
+
+        .picture-section {
+            margin: 40px 0; /* Reduces space above and below the picture */
+        }
+
+        .newsletter-section {
+            padding: 40px 0; /* Reduces space above and below the "Stay Updated" section */
+        }
+
     </style>
+    <!-- Popunder Ad -->
+    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
 </head>
 <body>
+    <!-- Top Ad -->
+    <center>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'c5c88b2c837a3d453109c356bc3cba63',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/c5c88b2c837a3d453109c356bc3cba63/invoke.js"></script>
+    </center>
+
     <!-- Code Display System -->
     <div class="code-display" id="codeDisplay">
         <div id="currentCode"></div>
         <span id="codeLabel"></span>
-    </div>
-
-    <!-- Notification for redirect -->
-    <div id="redirect-notification" class="redirect-notification">
-        <div class="notification-icon">
-            <i class="fas fa-external-link-alt"></i>
-        </div>
-        <div class="notification-content">
-            <p>You will be redirected to our partner site in <span id="countdown" class="countdown">5</span> seconds</p>
-        </div>
     </div>
 
     <!-- Header -->
@@ -903,20 +966,6 @@
         </div>
     </header>
 
-    <!-- Top Banner Ad (720×90) -->
-    <div class="ad-container top-ad">
-        <script type="text/javascript"> 
-            atOptions = { 
-                'key' : 'ff2266f8bea792336807121652acef41', 
-                'format' : 'iframe', 
-                'height' : 90, 
-                'width' : 728, 
-                'params' : {} 
-            }; 
-        </script> 
-        <script type="text/javascript" src="//www.highperformanceformat.com/ff2266f8bea792336807121652acef41/invoke.js"></script>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
@@ -938,18 +987,17 @@
             <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics.</p>
             
             <div class="movie-grid">
-                <!-- Movie 1 -->
+                <!-- Movie Cards Here -->
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/FFTF4pD3/Screenshot-20250804-233048-1.jpg" alt="The Dark Knight" class="movie-poster">
+                    <img src="https://i.postimg.cc/BnrQ5cwD/Screenshot-20250811-135316-1.jpg" alt="Hot Sexy" class="movie-poster">
                     <div class="movie-info">
-                        <h3 class="movie-title">Hot Sexy 🥵</h3>
+                        <h3 class="movie-title">Titanic</h3>
                         <div class="movie-meta">
                             <span>2025</span>
                             <span class="rating">9.0 ★</span>
                         </div>
                     </div>
                 </div>
-                <!-- Movie 2 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg" alt="The Godfather" class="movie-poster">
                     <div class="movie-info">
@@ -960,7 +1008,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Movie 3 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg" alt="Pulp Fiction" class="movie-poster">
                     <div class="movie-info">
@@ -971,7 +1018,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Movie 4 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg" alt="The Shawshank Redemption" class="movie-poster">
                     <div class="movie-info">
@@ -982,7 +1028,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Movie 5 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Goodfellas" class="movie-poster">
                     <div class="movie-info">
@@ -993,7 +1038,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Movie 6 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man: No Way Home" class="movie-poster">
                     <div class="movie-info">
@@ -1004,7 +1048,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Movie 7 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite" class="movie-poster">
                     <div class="movie-info">
@@ -1015,7 +1058,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Movie 8 -->
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="The Shining" class="movie-poster">
                     <div class="movie-info">
@@ -1030,19 +1072,19 @@
         </div>
     </section>
 
-    <!-- Middle Banner Ad (320×50) -->
-    <div class="ad-container middle-ad">
-        <script type="text/javascript"> 
-            atOptions = { 
-                'key' : '7c3ce7661b6276032ffb29201de896cb', 
-                'format' : 'iframe', 
-                'height' : 50, 
-                'width' : 320, 
-                'params' : {} 
-            }; 
-        </script> 
-        <script type="text/javascript" src="//www.highperformanceformat.com/7c3ce7661b6276032ffb29201de896cb/invoke.js"></script>
-    </div>
+    <!-- Banner 320x50 Ad -->
+    <center>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '7c3ce7661b6276032ffb29201de896cb',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/7c3ce7661b6276032ffb29201de896cb/invoke.js"></script>
+    </center>
 
     <!-- Web Series Section -->
     <section class="section" id="series">
@@ -1060,7 +1102,7 @@
                 <div class="category-tab">Fantasy</div>
             </div>
             <div class="movie-grid">
-                <!-- Series 1 -->
+                <!-- Series Cards Here -->
                 <div class="movie-card">
                     <img src="https://i.postimg.cc/P5PfRDFj/Screenshot-20250727-004028-1.jpg" alt="Breaking Bad" class="movie-poster">
                     <div class="movie-info">
@@ -1071,7 +1113,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 2 -->
                 <div class="movie-card">
                     <img src="https://i.postimg.cc/Y9wp0s2r/Screenshot-20250727-003906-1.jpg" alt="Stranger Things" class="movie-poster">
                     <div class="movie-info">
@@ -1082,7 +1123,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 3 -->
                 <div class="movie-card">
                     <img src="https://i.postimg.cc/3Jw3kphv/Screenshot-20250727-003836-1.jpg" alt="The Mandalorian" class="movie-poster">
                     <div class="movie-info">
@@ -1093,7 +1133,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 4 -->
                 <div class="movie-card">
                     <img src="https://i.postimg.cc/fLKhLWgC/Screenshot-20250727-003927-1.jpg" alt="Money Heist" class="movie-poster">
                     <div class="movie-info">
@@ -1104,7 +1143,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 5 -->
                 <div class="movie-card">
                     <img src="https://i.postimg.cc/158LxKPJ/Screenshot-20250727-003742-1.jpg" alt="The Witcher" class="movie-poster">
                     <div class="movie-info">
@@ -1115,9 +1153,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 6 -->
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/ZYNJpZvT/Screenshot-20250727-005324-1.jpg" alt="The Last of Us" class="movie-poster">
+                    <img src="https://i.postimg.cc/ZYNJpZvT/Screenshot-20250727-005324-1.jpg" alt="Sexy" class="movie-poster">
                     <div class="movie-info">
                         <h3 class="movie-title">Sexy 🔥</h3>
                         <div class="movie-meta">
@@ -1126,7 +1163,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 7 -->
                 <div class="movie-card">
                     <img src="https://i.postimg.cc/xd7SNF0J/Screenshot-20250727-005446-1.jpg" alt="Wednesday" class="movie-poster">
                     <div class="movie-info">
@@ -1137,9 +1173,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Series 8 -->
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/6QLkH10m/Screenshot-20250726-211948-1.jpg" alt="Peaky Blinders" class="movie-poster">
+                    <img src="https://i.postimg.cc/6QLkH10m/Screenshot-20250726-211948-1.jpg" alt="Alyx Star" class="movie-poster">
                     <div class="movie-info">
                         <h3 class="movie-title">Alyx Star</h3>
                         <div class="movie-meta">
@@ -1152,11 +1187,11 @@
         </div>
     </section>
 
-    <!-- Native Ad -->
-    <div class="ad-container native-ad">
-        <script async="async" data-cfasync="false" src="//pl27320837.profitableratecpm.com/cc2a810a45805db35a111260ba3ecd62/invoke.js"></script> 
+    <!-- Native Banner -->
+    <center>
+        <script async="async" data-cfasync="false" src="//regularseatradio.com/cc2a810a45805db35a111260ba3ecd62/invoke.js"></script>
         <div id="container-cc2a810a45805db35a111260ba3ecd62"></div>
-    </div>
+    </center>
 
     <!-- App Section -->
     <section class="section app-section" id="app">
@@ -1190,26 +1225,26 @@
     <!-- Picture Section -->
     <section class="picture-section">
         <div class="container">
-            <img src="https://i.postimg.cc/ZKBn7Wcq/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree.jpg" alt="Featured Content">
+            <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Featured Content">
         </div>
     </section>
 
-    <!-- Bottom Banner Ad (300×250) -->
-    <div class="ad-container bottom-ad">
-        <script type="text/javascript"> 
-            atOptions = { 
-                'key' : '674846739dd454e40f89892202117c13', 
-                'format' : 'iframe', 
-                'height' : 250, 
-                'width' : 300, 
-                'params' : {} 
-            }; 
-        </script> 
-        <script type="text/javascript" src="//www.highperformanceformat.com/674846739dd454e40f89892202117c13/invoke.js"></script>
-    </div>
+    <!-- Banner 300x250 Ad -->
+    <center>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '674846739dd454e40f89892202117c13',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/674846739dd454e40f89892202117c13/invoke.js"></script>
+    </center>
 
     <!-- Newsletter -->
-    <section class="section">
+    <section class="section newsletter-section">
         <div class="container">
             <div class="newsletter">
                 <h2>Stay Updated</h2>
@@ -1251,10 +1286,10 @@
                 <div class="footer-links">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR</a></li>
+                        <li><a href="javascript:void(0);" data-modal-target="terms-modal">Terms of Service</a></li>
+                        <li><a href="javascript:void(0);" data-modal-target="privacy-modal">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0);" data-modal-target="cookie-modal">Cookie Policy</a></li>
+                        <li><a href="javascript:void(0);" data-modal-target="gdpr-modal">GDPR</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1278,11 +1313,63 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Popunder Ad -->
-    <script type='text/javascript' src='//regularseatradio.com/8f/68/39/8f6839b653e6aa4dd955ca7a7fad761d.js'></script>
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent-banner" id="cookie-banner">
+        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="javascript:void(0);" data-modal-target="cookie-modal">Learn More</a></p>
+        <button class="cookie-accept-btn" id="cookie-accept">Accept</button>
+    </div>
 
-    <!-- Social bar -->
-    <script type='text/javascript' src='//pl27335701.profitableratecpm.com/27/79/68/277968a18ece7f677e6f69fd0b468bb2.js'></script>
+    <!-- Modals -->
+    <!-- Welcome Message Modal -->
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Welcome to Movie Hub!</h2>
+            <p>Your ultimate destination for movies and TV shows is here.</p>
+            <p>Explore our vast library, discover new favorites, and enjoy unlimited entertainment. We hope you have a great time!</p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Terms of Service</h2>
+            <p>Welcome to Movie Hub! These terms and conditions outline the rules and regulations for the use of our website.</p>
+            <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Movie Hub if you do not agree to take all of the terms and conditions stated on this page.</p>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. It is Movie Hub's policy to respect your privacy regarding any information we may collect from you across our website.</p>
+            <p>We only retain collected information for as long as necessary to provide you with your requested service.</p>
+        </div>
+    </div>
+
+    <!-- Cookie Policy Modal -->
+    <div id="cookie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Cookie Policy</h2>
+            <p>This site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience.</p>
+            <p>We use cookies for a variety of reasons. It is recommended that you leave on all cookies if you are not sure whether you need them or not.</p>
+        </div>
+    </div>
+
+    <!-- GDPR Modal -->
+    <div id="gdpr-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>GDPR Information</h2>
+            <p>The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy.</p>
+            <p>You have the right to access, rectify, or erase your personal data under certain conditions.</p>
+        </div>
+    </div>
+
 
     <script>
         // Code Display System
@@ -1300,41 +1387,32 @@
         
         let currentIndex = 0;
         let cycleCount = 0;
-        const maxCycles = 2; // Show all codes 2 times (total 2 minutes)
+        const maxCycles = 2;
         let displayTimeout;
         let intervalTimeout;
         
         function showCode() {
-            // Show the current code
             currentCodeElement.textContent = codes[currentIndex].code;
             codeLabelElement.textContent = codes[currentIndex].label;
             codeDisplay.classList.add('show');
             
-            // Hide after 2 seconds
             displayTimeout = setTimeout(() => {
                 codeDisplay.classList.remove('show');
-                
-                // Move to next code or cycle
                 currentIndex = (currentIndex + 1) % codes.length;
                 if (currentIndex === 0) {
                     cycleCount++;
                 }
-                
-                // Set random interval (10-20 seconds) for next code if not done
                 if (cycleCount < maxCycles) {
-                    const randomInterval = Math.floor(Math.random() * 10000) + 10000; // 10-20 seconds
+                    const randomInterval = Math.floor(Math.random() * 10000) + 10000;
                     intervalTimeout = setTimeout(showCode, randomInterval);
                 }
-            }, 2000); // Show each code for 2 seconds
+            }, 2000);
         }
         
-        // Start the code display system after page loads
         window.addEventListener('load', () => {
-            // Initial delay before first code (5 seconds)
             setTimeout(showCode, 5000);
         });
         
-        // Clean up timeouts if needed
         window.addEventListener('beforeunload', () => {
             clearTimeout(displayTimeout);
             clearTimeout(intervalTimeout);
@@ -1349,11 +1427,12 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navLinks.classList.remove('active');
+                if (navLinks.classList.contains('active')) {
+                   mobileMenu.classList.remove('active');
+                   navLinks.classList.remove('active');
+                }
             });
         });
 
@@ -1367,14 +1446,12 @@
             }
         });
 
-        // Smooth Scrolling for navigation links
+        // Smooth Scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
@@ -1386,7 +1463,6 @@
 
         // Back to Top Button
         const backToTopButton = document.getElementById('back-to-top');
-        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTopButton.classList.add('active');
@@ -1394,25 +1470,17 @@
                 backToTopButton.classList.remove('active');
             }
         });
-        
         backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Active link highlighting
+        // Active link highlighting on scroll
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-links a');
-
         window.addEventListener('scroll', () => {
             let current = '';
-            
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
                 if (pageYOffset >= (sectionTop - 150)) {
                     current = section.getAttribute('id');
                 }
@@ -1426,71 +1494,65 @@
             });
         });
 
-        // Redirect Notification System with 5-second delay and max 2 redirects
-        const redirectNotification = document.getElementById('redirect-notification');
-        const countdownElement = document.getElementById('countdown');
-        
-        // Check if user has reached max redirects
-        const maxRedirects = 2;
-        const redirectCount = localStorage.getItem('redirectCount') || 0;
-        
-        if (redirectCount < maxRedirects) {
-            // Show notification after 5 seconds
-            setTimeout(() => {
-                document.body.classList.add('notification-active');
-                redirectNotification.classList.add('show');
-                
-                let countdown = 5;
-                countdownElement.textContent = countdown;
-                
-                const countdownInterval = setInterval(() => {
-                    countdown--;
-                    countdownElement.textContent = countdown;
-                    
-                    if (countdown <= 0) {
-                        clearInterval(countdownInterval);
-                        // Increment redirect count
-                        localStorage.setItem('redirectCount', parseInt(redirectCount) + 1);
-                        window.location.href = 'https://regularseatradio.com/x5zdq1110v?key=ed3bc3cebe23be89da88f27ef89a19ec';
-                    }
-                }, 1000);
-            }, 5000); // 5-second delay before showing notification
-            
-            // Adjust header position when notification is shown
-            const notificationObserver = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.attributeName === 'class') {
-                        if (redirectNotification.classList.contains('show')) {
-                            document.body.classList.add('notification-active');
-                        } else {
-                            document.body.classList.remove('notification-active');
-                        }
-                    }
-                });
-            });
-            
-            notificationObserver.observe(redirectNotification, {
-                attributes: true,
-                attributeFilter: ['class']
-            });
-        }
-
-        // Load ads after page content is loaded
+        // All scripts that run after the DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Lazy load images
-            const lazyImages = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        observer.unobserve(img);
+            // Cookie Consent Banner
+            const cookieBanner = document.getElementById('cookie-banner');
+            const cookieAcceptButton = document.getElementById('cookie-accept');
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    cookieBanner.classList.add('show');
+                }, 1500);
+            }
+            cookieAcceptButton.addEventListener('click', () => {
+                cookieBanner.classList.remove('show');
+                localStorage.setItem('cookiesAccepted', 'true');
+            });
+
+            // Welcome Message Modal
+            const welcomeModal = document.getElementById('welcome-modal');
+            if (!localStorage.getItem('welcomeMessageShown')) {
+                setTimeout(() => {
+                    welcomeModal.style.display = 'block';
+                    document.body.classList.add('modal-open');
+                }, 2500); // Show after 2.5 seconds
+            }
+
+            // Modal Functionality
+            const modalTriggers = document.querySelectorAll('[data-modal-target]');
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const modalId = trigger.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = "block";
+                        document.body.classList.add('modal-open');
                     }
                 });
             });
 
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
+            function closeModal(modal) {
+                modal.style.display = "none";
+                if (modal.id === 'welcome-modal') {
+                    localStorage.setItem('welcomeMessageShown', 'true');
+                }
+                const anyModalOpen = Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block');
+                if (!anyModalOpen) {
+                    document.body.classList.remove('modal-open');
+                }
+            }
+
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                const closeBtn = modal.querySelector('.close-btn');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => closeModal(modal));
+                }
+                window.addEventListener('click', (event) => {
+                    if (event.target == modal) {
+                        closeModal(modal);
+                    }
+                });
             });
         });
     </script>
