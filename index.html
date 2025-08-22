@@ -33,35 +33,23 @@
             overflow: hidden;
         }
 
-        /* Code Display System */
-        .code-display {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        /* Ad Label Styling */
+        .ad-container {
+            position: relative;
+            margin: 10px 0;
             text-align: center;
-            min-width: 200px;
         }
-
-        .code-display.show {
-            opacity: 1;
-        }
-
-        .code-display span {
-            display: block;
-            font-size: 1rem;
-            margin-top: 5px;
-            opacity: 0.8;
+        
+        .ad-label {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 2px 5px;
+            font-size: 10px;
+            border-radius: 3px;
+            z-index: 1;
         }
 
         .container {
@@ -493,12 +481,14 @@
 
         .newsletter h2 {
             margin-bottom: 20px;
+            color: white;
         }
 
         .newsletter p {
             max-width: 600px;
             margin: 0 auto 30px;
             opacity: 0.9;
+            color: white;
         }
 
         .newsletter-form {
@@ -584,6 +574,7 @@
             font-size: 1.2rem;
             margin-bottom: 20px;
             font-weight: 600;
+            color: white;
         }
 
         .footer-links ul {
@@ -748,7 +739,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-
         /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
@@ -864,14 +854,6 @@
                 border-radius: 5px;
                 padding: 15px;
             }
-
-            /* Adjust code display for mobile */
-            .code-display {
-                top: 15px;
-                font-size: 1.2rem;
-                padding: 10px 20px;
-                min-width: 160px;
-            }
              .cookie-consent-banner {
                 flex-direction: column;
                 text-align: center;
@@ -905,27 +887,17 @@
                 padding: 20px;
             }
         }
-        
-        /* Custom spacing adjustments to reduce empty space based on user feedback */
-        #series {
-            padding-top: 20px; /* Reduces space above "Popular Web Series" */
-        }
-
-        .picture-section {
-            margin: 40px 0; /* Reduces space above and below the picture */
-        }
-
-        .newsletter-section {
-            padding: 40px 0; /* Reduces space above and below the "Stay Updated" section */
-        }
-
     </style>
-    <!-- Popunder Ad -->
-    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://image.tmdb.org">
+    <link rel="preconnect" href="https://i.postimg.cc">
+    <link rel="preconnect" href="//regularseatradio.com">
 </head>
 <body>
-    <!-- Top Ad -->
-    <center>
+    <!-- Top Ad with Label -->
+    <div class="ad-container">
+        <span class="ad-label">Ad</span>
         <script type="text/javascript">
             atOptions = {
                 'key' : '8ac60b63bca7574d012e68531d5cd632',
@@ -936,12 +908,6 @@
             };
         </script>
         <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
-    </center>
-
-    <!-- Code Display System -->
-    <div class="code-display" id="codeDisplay">
-        <div id="currentCode"></div>
-        <span id="codeLabel"></span>
     </div>
 
     <!-- Header -->
@@ -966,6 +932,21 @@
         </div>
     </header>
 
+    <!-- Added Ad under navigation bar with Label -->
+    <div class="ad-container" style="margin-top: 80px; margin-bottom: 20px;">
+        <span class="ad-label">Ad</span>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'cd453ad740a06faedb49eeaec96b619c',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/cd453ad740a06faedb49eeaec96b619c/invoke.js"></script>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
@@ -989,7 +970,7 @@
             <div class="movie-grid">
                 <!-- Movie Cards Here -->
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/BnrQ5cwD/Screenshot-20250811-135316-1.jpg" alt="Hot Sexy" class="movie-poster">
+                    <img src="https://i.postimg.cc/BnrQ5cwD/Screenshot-20250811-135316-1.jpg" alt="Hot Sexy" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Titanic</h3>
                         <div class="movie-meta">
@@ -999,7 +980,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg" alt="The Godfather" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg" alt="The Godfather" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">The Godfather</h3>
                         <div class="movie-meta">
@@ -1009,7 +990,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg" alt="Pulp Fiction" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg" alt="Pulp Fiction" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Pulp Fiction</h3>
                         <div class="movie-meta">
@@ -1019,7 +1000,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg" alt="The Shawshank Redemption" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg" alt="The Shawshank Redemption" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">The Shawshank Redemption</h3>
                         <div class="movie-meta">
@@ -1029,7 +1010,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Goodfellas" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Goodfellas" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Goodfellas</h3>
                         <div class="movie-meta">
@@ -1039,7 +1020,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man: No Way Home" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man: No Way Home" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Spider-Man: No Way Home</h3>
                         <div class="movie-meta">
@@ -1049,7 +1030,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Parasite</h3>
                         <div class="movie-meta">
@@ -1059,7 +1040,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="The Shining" class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="The Shining" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">The Shining</h3>
                         <div class="movie-meta">
@@ -1072,8 +1053,9 @@
         </div>
     </section>
 
-    <!-- Banner 320x50 Ad -->
-    <center>
+    <!-- Banner 320x50 Ad with Label -->
+    <div class="ad-container">
+        <span class="ad-label">Ad</span>
         <script type="text/javascript">
             atOptions = {
                 'key' : '7c3ce7661b6276032ffb29201de896cb',
@@ -1084,7 +1066,7 @@
             };
         </script>
         <script type="text/javascript" src="//regularseatradio.com/7c3ce7661b6276032ffb29201de896cb/invoke.js"></script>
-    </center>
+    </div>
 
     <!-- Web Series Section -->
     <section class="section" id="series">
@@ -1104,7 +1086,7 @@
             <div class="movie-grid">
                 <!-- Series Cards Here -->
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/P5PfRDFj/Screenshot-20250727-004028-1.jpg" alt="Breaking Bad" class="movie-poster">
+                    <img src="https://i.postimg.cc/P5PfRDFj/Screenshot-20250727-004028-1.jpg" alt="Breaking Bad" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Breaking Bad</h3>
                         <div class="movie-meta">
@@ -1114,7 +1096,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/Y9wp0s2r/Screenshot-20250727-003906-1.jpg" alt="Stranger Things" class="movie-poster">
+                    <img src="https://i.postimg.cc/Y9wp0s2r/Screenshot-20250727-003906-1.jpg" alt="Stranger Things" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Stranger Things</h3>
                         <div class="movie-meta">
@@ -1124,7 +1106,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/3Jw3kphv/Screenshot-20250727-003836-1.jpg" alt="The Mandalorian" class="movie-poster">
+                    <img src="https://i.postimg.cc/3Jw3kphv/Screenshot-20250727-003836-1.jpg" alt="The Mandalorian" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">The Mandalorian</h3>
                         <div class="movie-meta">
@@ -1134,7 +1116,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/fLKhLWgC/Screenshot-20250727-003927-1.jpg" alt="Money Heist" class="movie-poster">
+                    <img src="https://i.postimg.cc/fLKhLWgC/Screenshot-20250727-003927-1.jpg" alt="Money Heist" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Money Heist</h3>
                         <div class="movie-meta">
@@ -1144,7 +1126,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/158LxKPJ/Screenshot-20250727-003742-1.jpg" alt="The Witcher" class="movie-poster">
+                    <img src="https://i.postimg.cc/158LxKPJ/Screenshot-20250727-003742-1.jpg" alt="The Witcher" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">The Witcher</h3>
                         <div class="movie-meta">
@@ -1154,7 +1136,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/ZYNJpZvT/Screenshot-20250727-005324-1.jpg" alt="Sexy" class="movie-poster">
+                    <img src="https://i.postimg.cc/ZYNJpZvT/Screenshot-20250727-005324-1.jpg" alt="Sexy" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Sexy 🔥</h3>
                         <div class="movie-meta">
@@ -1164,7 +1146,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/xd7SNF0J/Screenshot-20250727-005446-1.jpg" alt="Wednesday" class="movie-poster">
+                    <img src="https://i.postimg.cc/xd7SNF0J/Screenshot-20250727-005446-1.jpg" alt="Wednesday" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Wednesday</h3>
                         <div class="movie-meta">
@@ -1174,7 +1156,7 @@
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://i.postimg.cc/6QLkH10m/Screenshot-20250726-211948-1.jpg" alt="Alyx Star" class="movie-poster">
+                    <img src="https://i.postimg.cc/6QLkH10m/Screenshot-20250726-211948-1.jpg" alt="Alyx Star" class="movie-poster" loading="lazy">
                     <div class="movie-info">
                         <h3 class="movie-title">Alyx Star</h3>
                         <div class="movie-meta">
@@ -1187,11 +1169,12 @@
         </div>
     </section>
 
-    <!-- Native Banner -->
-    <center>
+    <!-- Native Banner with Label -->
+    <div class="ad-container">
+        <span class="ad-label">Ad</span>
         <script async="async" data-cfasync="false" src="//regularseatradio.com/cc2a810a45805db35a111260ba3ecd62/invoke.js"></script>
         <div id="container-cc2a810a45805db35a111260ba3ecd62"></div>
-    </center>
+    </div>
 
     <!-- App Section -->
     <section class="section app-section" id="app">
@@ -1217,7 +1200,7 @@
                 </div>
             </div>
             <div class="app-image">
-                <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png" alt="Movie Hub App">
+                <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png" alt="Movie Hub App" loading="lazy">
             </div>
         </div>
     </section>
@@ -1225,12 +1208,13 @@
     <!-- Picture Section -->
     <section class="picture-section">
         <div class="container">
-            <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Featured Content">
+            <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Featured Content" loading="lazy">
         </div>
     </section>
 
-    <!-- Banner 300x250 Ad -->
-    <center>
+    <!-- Banner 300x250 Ad with Label -->
+    <div class="ad-container">
+        <span class="ad-label">Ad</span>
         <script type="text/javascript">
             atOptions = {
                 'key' : '674846739dd454e40f89892202117c13',
@@ -1241,7 +1225,7 @@
             };
         </script>
         <script type="text/javascript" src="//regularseatradio.com/674846739dd454e40f89892202117c13/invoke.js"></script>
-    </center>
+    </div>
 
     <!-- Newsletter -->
     <section class="section newsletter-section">
@@ -1360,54 +1344,7 @@
         </div>
     </div>
 
-
     <script>
-        // Code Display System
-        const codeDisplay = document.getElementById('codeDisplay');
-        const currentCodeElement = document.getElementById('currentCode');
-        const codeLabelElement = document.getElementById('codeLabel');
-        
-        const codes = [
-            { code: "Trade1", label: "Use code for 10% off" },
-            { code: "Tree2", label: "Special discount code" },
-            { code: "Hub3", label: "Limited time offer" },
-            { code: "Black4", label: "Exclusive promo code" },
-            { code: "Silence5", label: "Final discount code" }
-        ];
-        
-        let currentIndex = 0;
-        let cycleCount = 0;
-        const maxCycles = 2;
-        let displayTimeout;
-        let intervalTimeout;
-        
-        function showCode() {
-            currentCodeElement.textContent = codes[currentIndex].code;
-            codeLabelElement.textContent = codes[currentIndex].label;
-            codeDisplay.classList.add('show');
-            
-            displayTimeout = setTimeout(() => {
-                codeDisplay.classList.remove('show');
-                currentIndex = (currentIndex + 1) % codes.length;
-                if (currentIndex === 0) {
-                    cycleCount++;
-                }
-                if (cycleCount < maxCycles) {
-                    const randomInterval = Math.floor(Math.random() * 10000) + 10000;
-                    intervalTimeout = setTimeout(showCode, randomInterval);
-                }
-            }, 2000);
-        }
-        
-        window.addEventListener('load', () => {
-            setTimeout(showCode, 5000);
-        });
-        
-        window.addEventListener('beforeunload', () => {
-            clearTimeout(displayTimeout);
-            clearTimeout(intervalTimeout);
-        });
-
         // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
@@ -1534,5 +1471,7 @@
             });
         });
     </script>
+    <!-- Popunder Ad -->
+    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
 </body>
 </html>
