@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie HuB</title>
+    <title>Movie Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!-- === PERFORMANCE OPTIMIZATIONS === -->
+    <!-- Preconnect to external domains for faster connection setup -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+    <link rel="preconnect" href="https://i.postimg.cc" crossorigin>
+    <!-- Preload the most important image (Largest Contentful Paint) -->
+    <link rel="preload" as="image" href="https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg">
+    
     <style>
         :root {
             --primary-color: #e50914;
@@ -14,6 +25,20 @@
             --gray-color: #777;
             --border-color: #e0e0e0;
             --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --body-bg: #fff;
+            --text-color: #333;
+        }
+
+        /* === DARK THEME VARIABLES === */
+        body.dark-theme {
+            --secondary-color: #121212;
+            --dark-color: #e0e0e0;
+            --light-color: #1e1e1e;
+            --gray-color: #888;
+            --border-color: #3a3a3a;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --body-bg: #121212;
+            --text-color: #f5f5f1;
         }
 
         * {
@@ -24,32 +49,14 @@
         }
 
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: var(--body-bg);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body.modal-open {
             overflow: hidden;
-        }
-
-        /* Ad Label Styling */
-        .ad-container {
-            position: relative;
-            margin: 10px 0;
-            text-align: center;
-        }
-        
-        .ad-label {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: rgba(0,0,0,0.5);
-            color: white;
-            padding: 2px 5px;
-            font-size: 10px;
-            border-radius: 3px;
-            z-index: 1;
         }
 
         .container {
@@ -94,9 +101,46 @@
             margin-right: 10px;
         }
 
+        /* Search Bar in Header */
+        .search-container {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .search-container .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: var(--gray-color);
+        }
+
+        #search-input {
+            background-color: #222;
+            border: 1px solid #444;
+            border-radius: 20px;
+            color: #fff;
+            padding: 8px 15px 8px 40px; /* Left padding for icon */
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        #search-input::placeholder {
+            color: var(--gray-color);
+        }
+
+        #search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: #333;
+            width: 300px; /* Expand on focus */
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
+            margin-left: auto; /* Push nav links to the right */
+            align-items: center;
         }
 
         .nav-links li {
@@ -104,7 +148,7 @@
         }
 
         .nav-links a {
-            color: var(--light-color);
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
@@ -139,6 +183,29 @@
         .nav-links .active::after {
             width: 100%;
         }
+        
+        /* === NEW: Container for right side controls === */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* === UPDATED: Theme Switcher Button === */
+        .theme-switcher {
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .theme-switcher .fa-sun {
+            display: none;
+        }
+        body.dark-theme .theme-switcher .fa-sun {
+            display: block;
+        }
+        body.dark-theme .theme-switcher .fa-moon {
+            display: none;
+        }
 
         .menu-toggle {
             display: none;
@@ -161,12 +228,12 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                         url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
             position: relative;
             display: flex;
             align-items: center;
-            color: var(--light-color);
+            color: #fff;
             text-align: center;
         }
 
@@ -192,7 +259,7 @@
         .btn {
             display: inline-block;
             background: var(--primary-color);
-            color: var(--light-color);
+            color: #fff;
             padding: 12px 25px;
             border: none;
             border-radius: 5px;
@@ -215,7 +282,7 @@
 
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--light-color);
+            border: 2px solid #fff;
             margin-left: 15px;
         }
 
@@ -223,10 +290,62 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* Auto Slider Section */
+        .auto-slider-section {
+            padding: 50px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .auto-slider-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auto-slide-item img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: center center;
+            vertical-align: middle;
+            border-radius: 15px;
+        }
+
+        .auto-slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: #fff;
+            padding: 50px 30px 30px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .auto-slide-caption h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .auto-slide-caption p {
+            font-size: 1.1rem;
+            max-width: 70%;
+        }
+
         /* Sections */
         .section {
             padding: 100px 0;
             scroll-margin-top: 80px;
+        }
+        #hindi-movies, #series, #unlimited {
+            padding-top: 0;
+        }
+        
+        .newsletter-section {
+            padding: 40px 0;
         }
 
         .section-title {
@@ -235,6 +354,7 @@
             position: relative;
             padding-bottom: 15px;
             font-weight: 700;
+            color: var(--text-color);
         }
 
         .section-title::after {
@@ -255,13 +375,16 @@
             font-size: 1.1rem;
         }
 
-        /* Movie Grid */
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
+        /* Swiper.js Custom Styles */
+        .slider-container {
+            position: relative;
+            padding: 0 10px;
         }
 
+        .swiper {
+            overflow: visible; 
+        }
+        
         .movie-card {
             background: var(--light-color);
             border-radius: 8px;
@@ -270,6 +393,8 @@
             cursor: pointer;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
+            width: 280px; 
+            flex-shrink: 0;
         }
 
         .movie-card:hover {
@@ -279,7 +404,7 @@
 
         .movie-poster {
             width: 100%;
-            height: 330px;
+            aspect-ratio: 16 / 9;
             object-fit: cover;
             transition: transform 0.5s;
         }
@@ -299,6 +424,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: var(--text-color);
         }
 
         .movie-meta {
@@ -311,6 +437,48 @@
         .rating {
             color: #ffc107;
             font-weight: bold;
+        }
+
+        /* Swiper Navigation and Pagination */
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: var(--primary-color);
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 1.5rem;
+        }
+        .swiper-button-disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .auto-slider-container .swiper-button-prev { left: 20px; }
+        .auto-slider-container .swiper-button-next { right: 20px; }
+
+        .content-slider-navigation .swiper-button-prev {
+            left: -25px;
+        }
+        .content-slider-navigation .swiper-button-next {
+            right: -25px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--primary-color);
         }
 
         /* Categories Section */
@@ -334,6 +502,37 @@
         .category-tab.active, .category-tab:hover {
             color: var(--primary-color);
             border-bottom: 3px solid var(--primary-color);
+        }
+        
+        /* Unlimited Grid Section */
+        .unlimited-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .unlimited-poster {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 2 / 3;
+        }
+
+        .unlimited-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .unlimited-poster:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .unlimited-cta {
+            text-align: center;
+            margin-top: 50px;
         }
 
         /* App Section */
@@ -373,8 +572,8 @@
         .app-btn {
             display: flex;
             align-items: center;
-            background: var(--dark-color);
-            color: var(--light-color);
+            background: #333; 
+            color: #fff; 
             padding: 12px 20px;
             border-radius: 8px;
             text-decoration: none;
@@ -420,63 +619,14 @@
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--secondary-color);
-            padding: 80px 0;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--dark-color);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-
-        .author-info h4 {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            color: var(--gray-color);
-            font-size: 0.9rem;
-        }
-
+        
         /* Newsletter */
         .newsletter {
             text-align: center;
             padding: 60px 0;
             background: linear-gradient(135deg, rgba(229,9,20,0.9) 0%, rgba(193,7,16,0.9) 100%);
-            color: var(--light-color);
+            color: #fff;
             border-radius: 15px;
-            margin: 40px 0;
         }
 
         .newsletter h2 {
@@ -505,10 +655,15 @@
             font-size: 1rem;
         }
 
+        body.dark-theme .newsletter-form input {
+            background: #444;
+            color: #fff;
+        }
+
         .newsletter-form button {
             padding: 0 25px;
-            background: var(--dark-color);
-            color: var(--light-color);
+            background: #333;
+            color: #fff;
             border: none;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
@@ -522,8 +677,8 @@
 
         /* Footer */
         footer {
-            background: var(--dark-color);
-            color: var(--light-color);
+            background: #1a1a1a;
+            color: #f5f5f1;
             padding: 60px 0 20px;
         }
 
@@ -537,7 +692,7 @@
         .footer-logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: var(--light-color);
+            color: #fff;
             margin-bottom: 20px;
             display: block;
         }
@@ -561,7 +716,7 @@
             height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            color: var(--light-color);
+            color: #fff;
             transition: all 0.3s;
         }
 
@@ -593,7 +748,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--light-color);
+            color: #fff;
         }
 
         .footer-bottom {
@@ -643,7 +798,7 @@
             left: 0;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.85);
-            color: var(--light-color);
+            color: #fff;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
@@ -671,7 +826,7 @@
 
         .cookie-accept-btn {
             background-color: var(--primary-color);
-            color: var(--light-color);
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -686,19 +841,20 @@
 
         /* Modal Styles */
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 10001; 
+            display: none;
+            position: fixed;
+            z-index: 10001;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.6); 
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
             margin: 10% auto;
             padding: 30px;
             border-radius: 10px;
@@ -707,7 +863,7 @@
             position: relative;
             animation: fadeIn 0.5s;
         }
-        
+
         .modal-content h2 {
             margin-bottom: 20px;
             color: var(--primary-color);
@@ -719,7 +875,7 @@
         }
 
         .close-btn {
-            color: #aaa;
+            color: var(--gray-color);
             position: absolute;
             top: 15px;
             right: 25px;
@@ -730,10 +886,10 @@
 
         .close-btn:hover,
         .close-btn:focus {
-            color: black;
+            color: var(--text-color);
             text-decoration: none;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -741,175 +897,74 @@
 
         /* Responsive */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .app-container {
-                gap: 30px;
-            }
-
-            .picture-section img {
-                width: 100%;
-                height: auto;
-                max-height: 363px;
-            }
+            .hero h1 { font-size: 2.8rem; }
+            .app-container { gap: 30px; }
+            .picture-section img { width: 100%; height: auto; max-height: 363px; }
+            #search-input { width: 200px; }
+            #search-input:focus { width: 220px; }
+            .content-slider-navigation .swiper-button-prev, .content-slider-navigation .swiper-button-next { display: none; }
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 10px 0;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.95);
-                flex-direction: column;
-                align-items: center;
-                padding: 100px 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-                transition: right 0.3s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 10px 20px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .hero {
-                height: auto;
-                padding: 150px 0 100px;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn-outline {
-                margin-left: 0;
-            }
-
-            .app-container {
-                flex-direction: column;
-            }
-
-            .app-content {
+            header { padding: 10px 0; }
+            .header-container { flex-wrap: wrap; }
+            .logo { font-size: 1.5rem; order: 1; }
+            .search-container { order: 3; width: 100%; margin: 10px 0 0 0; }
+            #search-input, #search-input:focus { width: 100%; }
+            
+            /* Hide nav links by default on mobile */
+            .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: rgba(0, 0, 0, 0.95); flex-direction: column; align-items: center; padding: 100px 0; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); transition: right 0.3s ease; margin-left: 0; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 15px 0; }
+            .nav-links a { font-size: 1.2rem; padding: 10px 20px; }
+            
+            /* UPDATED: Group controls and position them */
+            .header-controls {
                 order: 2;
-                text-align: center;
+                margin-left: auto; /* Push to the right */
             }
+            .menu-toggle { display: flex; }
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-            .app-buttons {
-                justify-content: center;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-form input {
-                border-radius: 5px;
-                margin-bottom: 10px;
-            }
-
-            .newsletter-form button {
-                border-radius: 5px;
-                padding: 15px;
-            }
-             .cookie-consent-banner {
-                flex-direction: column;
-                text-align: center;
-            }
+            .hero { height: auto; padding: 150px 0 100px; text-align: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .btn-group { display: flex; flex-direction: column; gap: 15px; }
+            .btn-outline { margin-left: 0; }
+            .auto-slide-caption h3 { font-size: 1.5rem; }
+            .auto-slide-caption p { font-size: 0.9rem; max-width: 90%; }
+            .unlimited-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
+            .app-container { flex-direction: column; }
+            .app-content { order: 2; text-align: center; }
+            .app-buttons { justify-content: center; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-form input { border-radius: 5px; margin-bottom: 10px; }
+            .newsletter-form button { border-radius: 5px; padding: 15px; }
+            .cookie-consent-banner { flex-direction: column; text-align: center; }
         }
 
         @media (max-width: 576px) {
-            .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
-            .movie-poster {
-                height: 250px;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .app-buttons {
-                flex-direction: column;
-            }
-
-            .section {
-                padding: 70px 0;
-                scroll-margin-top: 60px;
-            }
-
-            .modal-content {
-                margin: 20% auto;
-                padding: 20px;
-            }
+            .movie-card { width: 240px; }
+            .unlimited-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+            .section-title { font-size: 1.8rem; }
+            .app-buttons { flex-direction: column; }
+            .section { padding: 70px 0; scroll-margin-top: 60px; }
+            .modal-content { margin: 20% auto; padding: 20px; }
         }
     </style>
-    <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://image.tmdb.org">
-    <link rel="preconnect" href="https://i.postimg.cc">
-    <link rel="preconnect" href="//regularseatradio.com">
 </head>
 <body>
-    <!-- Top Ad with Label -->
-    <div class="ad-container">
-        <span class="ad-label">Ad</span>
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '8ac60b63bca7574d012e68531d5cd632',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
-    </div>
-
+    <!-- SCRIPT to prevent flash of wrong theme -->
+    <script>
+        (function() {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        })();
+    </script>
+    
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
@@ -917,35 +972,34 @@
                 <i class="fas fa-film"></i>
                 Movie Hub
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="search" id="search-input" placeholder="Search movies or shows...">
             </div>
+            
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#movies">Movies</a></li>
+                <li><a href="#hindi-movies">Hindi Movies</a></li>
                 <li><a href="#series">TV Shows</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#unlimited">Unlimited</a></li>
                 <li><a href="#app">Download App</a></li>
             </ul>
+
+            <!-- === NEW: Right side header controls === -->
+            <div class="header-controls">
+                <div class="theme-switcher" id="theme-switcher">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </header>
-
-    <!-- Added Ad under navigation bar with Label -->
-    <div class="ad-container" style="margin-top: 80px; margin-bottom: 20px;">
-        <span class="ad-label">Ad</span>
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'cd453ad740a06faedb49eeaec96b619c',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//regularseatradio.com/cd453ad740a06faedb49eeaec96b619c/invoke.js"></script>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -961,119 +1015,61 @@
         </div>
     </section>
 
+    <!-- Auto Slider Section -->
+    <section class="auto-slider-section">
+        <div class="swiper auto-slider-container">
+            <div class="swiper-wrapper" id="auto-slider-wrapper">
+                <!-- Auto-slides will be injected here -->
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </section>
+
     <!-- Featured Movies Section -->
     <section class="section" id="movies">
         <div class="container">
-            <h2 class="section-title">Featured Movies</h2>
+            <h2 class="section-title">Bangla Natok</h2>
             <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics.</p>
-            
-            <div class="movie-grid">
-                <!-- Movie Cards Here -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/BnrQ5cwD/Screenshot-20250811-135316-1.jpg" alt="Hot Sexy" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Titanic</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">9.0 ★</span>
-                        </div>
+            <div class="slider-container">
+                <div class="swiper content-slider">
+                    <div class="swiper-wrapper" id="movies-grid">
+                        <!-- Movie Cards will be dynamically inserted here by JavaScript -->
                     </div>
                 </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg" alt="The Godfather" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Godfather</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg" alt="Pulp Fiction" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Pulp Fiction</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">8.9 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg" alt="The Shawshank Redemption" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Shawshank Redemption</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">9.3 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="Goodfellas" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Goodfellas</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man: No Way Home" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Spider-Man: No Way Home</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <span class="rating">8.2 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Parasite</h3>
-                        <div class="movie-meta">
-                            <span>2019</span>
-                            <span class="rating">8.5 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="The Shining" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Shining</h3>
-                        <div class="movie-meta">
-                            <span>1980</span>
-                            <span class="rating">8.4 ★</span>
-                        </div>
-                    </div>
+                <div class="content-slider-navigation">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Banner 320x50 Ad with Label -->
-    <div class="ad-container">
-        <span class="ad-label">Ad</span>
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '7c3ce7661b6276032ffb29201de896cb',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//regularseatradio.com/7c3ce7661b6276032ffb29201de896cb/invoke.js"></script>
-    </div>
+    <!-- Hindi Movies Section -->
+    <section class="section" id="hindi-movies">
+        <div class="container">
+            <h2 class="section-title">Hindi Blockbusters</h2>
+            <p class="section-subtitle">Enjoy the best of Bollywood, from evergreen hits to the latest blockbusters.</p>
+            <div class="slider-container">
+                <div class="swiper content-slider">
+                    <div class="swiper-wrapper" id="hindi-movies-grid">
+                        <!-- Hindi Movie Cards will be dynamically inserted here by JavaScript -->
+                    </div>
+                </div>
+                <div class="content-slider-navigation">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Web Series Section -->
     <section class="section" id="series">
         <div class="container">
             <h2 class="section-title">Popular Web Series</h2>
             <p class="section-subtitle">Binge-watch the most talked-about shows from around the world.</p>
-            
             <div class="category-tabs">
                 <div class="category-tab active">All</div>
                 <div class="category-tab">Action</div>
@@ -1083,98 +1079,33 @@
                 <div class="category-tab">Thriller</div>
                 <div class="category-tab">Fantasy</div>
             </div>
-            <div class="movie-grid">
-                <!-- Series Cards Here -->
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/P5PfRDFj/Screenshot-20250727-004028-1.jpg" alt="Breaking Bad" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Breaking Bad</h3>
-                        <div class="movie-meta">
-                            <span>2008-2013</span>
-                            <span class="rating">9.5 ★</span>
-                        </div>
+            <div class="slider-container">
+                <div class="swiper content-slider">
+                    <div class="swiper-wrapper" id="series-grid">
+                        <!-- Series Cards will be dynamically inserted here by JavaScript -->
                     </div>
                 </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/Y9wp0s2r/Screenshot-20250727-003906-1.jpg" alt="Stranger Things" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Stranger Things</h3>
-                        <div class="movie-meta">
-                            <span>2016-Present</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/3Jw3kphv/Screenshot-20250727-003836-1.jpg" alt="The Mandalorian" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Mandalorian</h3>
-                        <div class="movie-meta">
-                            <span>2019-Present</span>
-                            <span class="rating">8.5 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/fLKhLWgC/Screenshot-20250727-003927-1.jpg" alt="Money Heist" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Money Heist</h3>
-                        <div class="movie-meta">
-                            <span>2017-2021</span>
-                            <span class="rating">8.3 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/158LxKPJ/Screenshot-20250727-003742-1.jpg" alt="The Witcher" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Witcher</h3>
-                        <div class="movie-meta">
-                            <span>2019-Present</span>
-                            <span class="rating">8.0 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/ZYNJpZvT/Screenshot-20250727-005324-1.jpg" alt="Sexy" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Sexy 🔥</h3>
-                        <div class="movie-meta">
-                            <span>2023-Present</span>
-                            <span class="rating">8.8 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/xd7SNF0J/Screenshot-20250727-005446-1.jpg" alt="Wednesday" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Wednesday</h3>
-                        <div class="movie-meta">
-                            <span>2022-Present</span>
-                            <span class="rating">8.7 ★</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://i.postimg.cc/6QLkH10m/Screenshot-20250726-211948-1.jpg" alt="Alyx Star" class="movie-poster" loading="lazy">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Alyx Star</h3>
-                        <div class="movie-meta">
-                            <span>2013-2022</span>
-                            <span class="rating">8.8 ★</span>
-                        </div>
-                    </div>
+                <div class="content-slider-navigation">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Native Banner with Label -->
-    <div class="ad-container">
-        <span class="ad-label">Ad</span>
-        <script async="async" data-cfasync="false" src="//regularseatradio.com/cc2a810a45805db35a111260ba3ecd62/invoke.js"></script>
-        <div id="container-cc2a810a45805db35a111260ba3ecd62"></div>
-    </div>
+    <!-- Unlimited Entertainment Section -->
+    <section class="section" id="unlimited">
+        <div class="container">
+            <h2 class="section-title">Unlimited Entertainment</h2>
+            <p class="section-subtitle">Explore a massive library of movies and shows from every genre. New titles are added every week, so there's always something new to discover.</p>
+            <div class="unlimited-grid" id="unlimited-grid">
+                <!-- Posters will be dynamically inserted here by JavaScript -->
+            </div>
+            <div class="unlimited-cta">
+                 <a href="#" class="btn btn-lg">Start Your Free Trial</a>
+            </div>
+        </div>
+    </section>
 
     <!-- App Section -->
     <section class="section app-section" id="app">
@@ -1212,21 +1143,6 @@
         </div>
     </section>
 
-    <!-- Banner 300x250 Ad with Label -->
-    <div class="ad-container">
-        <span class="ad-label">Ad</span>
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '674846739dd454e40f89892202117c13',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//regularseatradio.com/674846739dd454e40f89892202117c13/invoke.js"></script>
-    </div>
-
     <!-- Newsletter -->
     <section class="section newsletter-section">
         <div class="container">
@@ -1262,8 +1178,9 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#movies">Movies</a></li>
+                        <li><a href="#hindi-movies">Hindi Movies</a></li>
                         <li><a href="#series">TV Shows</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#unlimited">Unlimited</a></li>
                         <li><a href="#app">Download App</a></li>
                     </ul>
                 </div>
@@ -1304,161 +1221,257 @@
     </div>
 
     <!-- Modals -->
-    <!-- Terms of Service Modal -->
-    <div id="terms-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Terms of Service</h2>
-            <p>Welcome to Movie Hub! These terms and conditions outline the rules and regulations for the use of our website.</p>
-            <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Movie Hub if you do not agree to take all of the terms and conditions stated on this page.</p>
-        </div>
-    </div>
+    <div id="terms-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Terms of Service</h2><p>Welcome to Movie Hub! These terms and conditions outline the rules and regulations for the use of our website.</p><p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Movie Hub if you do not agree to take all of the terms and conditions stated on this page.</p></div></div>
+    <div id="privacy-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Privacy Policy</h2><p>Your privacy is important to us. It is Movie Hub's policy to respect your privacy regarding any information we may collect from you across our website.</p><p>We only retain collected information for as long as necessary to provide you with your requested service.</p></div></div>
+    <div id="cookie-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Cookie Policy</h2><p>This site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience.</p><p>We use cookies for a variety of reasons. It is recommended that you leave on all cookies if you are not sure whether you need them or not.</p></div></div>
+    <div id="gdpr-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>GDPR Information</h2><p>The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy.</p><p>You have the right to access, rectify, or erase your personal data under certain conditions.</p></div></div>
 
-    <!-- Privacy Policy Modal -->
-    <div id="privacy-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. It is Movie Hub's policy to respect your privacy regarding any information we may collect from you across our website.</p>
-            <p>We only retain collected information for as long as necessary to provide you with your requested service.</p>
-        </div>
-    </div>
-
-    <!-- Cookie Policy Modal -->
-    <div id="cookie-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Cookie Policy</h2>
-            <p>This site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience.</p>
-            <p>We use cookies for a variety of reasons. It is recommended that you leave on all cookies if you are not sure whether you need them or not.</p>
-        </div>
-    </div>
-
-    <!-- GDPR Modal -->
-    <div id="gdpr-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>GDPR Information</h2>
-            <p>The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy.</p>
-            <p>You have the right to access, rectify, or erase your personal data under certain conditions.</p>
-        </div>
-    </div>
-
+    <!-- Swiper.js JS (deferred for faster page load) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script>
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('nav-links');
+        // --- DATA FOR MOVIES & SERIES ---
+        const moviesData = [
+            { title: 'সবার উপরে ভাত।', year: '2025', rating: '8.8', img: 'https://i.postimg.cc/pXmxzJNF/QW1-LLZf4-G6-Q-HD.jpg' },
+            { title: 'বিয়ে করে ভুল করেছি।', year: '2025', rating: '9.3', img: 'https://i.postimg.cc/593jn3kK/Ktf5-R9f8x-Ys-HD.jpg' },
+            { title: 'তুই শুধু আমার।', year: '2025', rating: '8.7', img: 'https://i.postimg.cc/76SJHr9q/i-Jgq-NQMBNTA-HD.jpg' },
+            { title: 'Mister Fool', year: '2025', rating: '8.5', img: 'https://i.postimg.cc/Njv8mbyJ/ysk-VXg-Bd-F68-HD.jpg' },
+            { title: 'আংটি।', year: '2025', rating: '8.9', img: 'https://i.postimg.cc/wB0hKpwZ/yq6-NPv-UMy-Ks-HD.jpg' },
+            { title: 'তিন বাটপার। ', year: '2025', rating: '9.1', img: 'https://i.postimg.cc/V5Qt9LNr/jdx-YCLHYBVI-HD.jpg' },
+            { title: 'যৌথ ফ্যামিলি।', year: '2025', rating: '8.6', img: 'https://i.postimg.cc/6qRcxP2Z/QIDig-IDKWRM-HD.jpg' },
+            { title: 'ঘড় ছাড়া। ', year: '2025', rating: '9.0', img: 'https://i.postimg.cc/YSszG7Qg/Ek-Ia-El-Bj-z-Q-HD.jpg' },
+            { title: 'বিয়ের পড়ে।', year: '2025', rating: '8.8', img: 'https://i.postimg.cc/VNpXsRcW/L5yp8ygv-Gnw-HD.jpg' },
+            { title: 'রক্তের বাধন। ', year: '2025', rating: '9.2', img: 'https://i.postimg.cc/mghccHjX/ACp-Mue1-Xd6-I-HD.jpg' }
+        ];
+        
+        const hindiMoviesData = [
+            { title: 'CASHMA KALA', year: '2025', rating: '8.5', img: 'https://i.postimg.cc/wBtHrFth/ih-KYBl-OJJ-k-HD.jpg' },
+            { title: 'GARMI', year: '2025', rating: '9.1', img: 'https://i.postimg.cc/JnVw28CL/o-Bvifg4-UQd4-HD.jpg' },
+            { title: 'NESHA', year: '2025', rating: '8.8', img: 'https://i.postimg.cc/6qtkBhQb/NZ1-EBaq-DL0-M-HD.jpg' },
+            { title: 'VERY HOT', year: '2025', rating: '9.0', img: 'https://i.postimg.cc/j2xFpd8G/wj-YW6ep-JWM-HD.jpg' },
+            { title: 'TARAS', year: '2025', rating: '8.6', img: 'https://i.postimg.cc/zD7MnKv5/kf-Xy4-W0a-D40-HD.jpg' },
+            { title: 'DILBAR', year: '2025', rating: '9.2', img: 'https://i.postimg.cc/nzZRmhtC/TRa9-IMvccjg-HD.jpg' },
+            { title: 'ROCK THE PARTY', year: '2025', rating: '8.7', img: 'https://i.postimg.cc/g0bN92jN/gwqen-R0cr-Ho-HD.jpg' },
+            { title: 'TAMANNA BATAI', year: '2025', rating: '9.3', img: 'https://i.postimg.cc/B6Q5sL0c/EZWCGRMi-UIM-HD.jpg' },
+            { title: 'AAJ KI RAAT', year: '2025', rating: '8.9', img: 'https://i.postimg.cc/br41Qm23/ri1-Ar5n-Eq4s-HD.jpg' },
+            { title: 'LAILA MAIN LAILA', year: '2025', rating: '9.4', img: 'https://i.postimg.cc/kMLjNsC0/95-I5-Va-R7-Ge-U-HD.jpg' }
+        ];
 
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                   mobileMenu.classList.remove('active');
-                   navLinks.classList.remove('active');
-                }
-            });
-        });
-
-        // Sticky Header
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth Scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Back to Top Button
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('active');
-            } else {
-                backToTopButton.classList.remove('active');
-            }
-        });
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Active link highlighting on scroll
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-links a');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) {
-                    item.classList.add('active');
-                }
-            });
-        });
+        const seriesData = [
+            { title: 'Breaking Bad', year: '2008-2013', rating: '9.5', img: 'https://image.tmdb.org/t/p/w500/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg' },
+            { title: 'Game of Thrones', year: '2011-2019', rating: '9.2', img: 'https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg' },
+            { title: 'Stranger Things', year: '2016-Present', rating: '8.7', img: 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg' },
+            { title: 'The Mandalorian', year: '2019-Present', rating: '8.5', img: 'https://i.postimg.cc/g2prZCTn/8f-Cj-3-NDa-Js-HD.jpg' },
+            { title: 'Money Heist', year: '2017-2021', rating: '8.3', img: 'https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg' },
+            { title: 'The Witcher', year: '2019-Present', rating: '8.0', img: 'https://image.tmdb.org/t/p/w500/foGkPxpw9h8zln81j63mix5B7m8.jpg' },
+            { title: 'Wednesday', year: '2022-Present', rating: '8.7', img: 'https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg' }
+        ];
 
         // All scripts that run after the DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Cookie Consent Banner
+
+            // --- THEME SWITCHER LOGIC ---
+            const themeSwitcher = document.getElementById('theme-switcher');
+            themeSwitcher.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                // Save the user's preference in localStorage
+                if (document.body.classList.contains('dark-theme')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // --- DYNAMIC AUTO SLIDER POPULATION ---
+            function populateAutoSlider() {
+                const autoSliderWrapper = document.getElementById('auto-slider-wrapper');
+                if (!autoSliderWrapper) return;
+                
+                const bannerData = [...hindiMoviesData.slice(0, 4), ...seriesData.slice(0, 4)];
+                autoSliderWrapper.innerHTML = bannerData.map(item => {
+                    const bannerUrl = item.img.includes('tmdb') ? item.img.replace('/w500/', '/original/') : item.img;
+                    return `
+                        <div class="swiper-slide auto-slide-item">
+                            <img src="${bannerUrl}" alt="${item.title} Banner" loading="lazy">
+                            <div class="auto-slide-caption">
+                                <h3>${item.title}</h3>
+                                <p>Released: ${item.year} | Rating: ${item.rating} ★</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            // --- DYNAMIC CONTENT SLIDER POPULATION ---
+            function populateContentSlider(gridId, data) {
+                const grid = document.getElementById(gridId);
+                if (!grid) return;
+
+                if (data.length === 0) {
+                    grid.innerHTML = `<p class="no-results" style="text-align: center; width: 100%;">No matching results found.</p>`;
+                    return;
+                }
+
+                grid.innerHTML = data.map(item => `
+                    <div class="swiper-slide movie-card">
+                        <img src="${item.img}" alt="${item.title}" class="movie-poster" loading="lazy">
+                        <div class="movie-info">
+                            <h3 class="movie-title">${item.title}</h3>
+                            <div class="movie-meta">
+                                <span>${item.year}</span>
+                                <span class="rating">${item.rating} ★</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // --- SWIPER INITIALIZATION ---
+            function initSwipers() {
+                const autoSlider = new Swiper('.auto-slider-container', {
+                    loop: true,
+                    effect: 'fade',
+                    fadeEffect: { crossFade: true },
+                    autoplay: { delay: 5000, disableOnInteraction: false },
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                });
+
+                document.querySelectorAll('.content-slider').forEach(slider => {
+                    const navigation = slider.parentElement.querySelector('.content-slider-navigation');
+                    new Swiper(slider, {
+                        slidesPerView: 'auto',
+                        spaceBetween: 15,
+                        navigation: {
+                            nextEl: navigation.querySelector('.swiper-button-next'),
+                            prevEl: navigation.querySelector('.swiper-button-prev'),
+                        },
+                        breakpoints: {
+                            640: { slidesPerView: 2, spaceBetween: 20 },
+                            768: { slidesPerView: 3, spaceBetween: 25 },
+                            1024: { slidesPerView: 4, spaceBetween: 25 },
+                        }
+                    });
+                });
+            }
+
+            // --- UNLIMITED MOVIES GRID POPULATION ---
+            function populateUnlimitedGrid() {
+                const unlimitedGrid = document.getElementById('unlimited-grid');
+                if (!unlimitedGrid) return;
+                let allContent = [...moviesData, ...seriesData, ...hindiMoviesData];
+                for (let i = allContent.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [allContent[i], allContent[j]] = [allContent[j], allContent[i]];
+                }
+                const gridItems = allContent.slice(0, 18);
+                unlimitedGrid.innerHTML = gridItems.map(item => `
+                    <div class="unlimited-poster">
+                        <img src="${item.img}" alt="${item.title}" loading="lazy">
+                    </div>
+                `).join('');
+            }
+
+            // Populate sliders and grid
+            populateAutoSlider();
+            populateContentSlider('movies-grid', moviesData);
+            populateContentSlider('hindi-movies-grid', hindiMoviesData);
+            populateContentSlider('series-grid', seriesData);
+            populateUnlimitedGrid();
+            
+            // Initialize all Swiper instances
+            initSwipers();
+
+            // --- SEARCH FUNCTIONALITY ---
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                const filteredMovies = moviesData.filter(movie => movie.title.toLowerCase().includes(query));
+                const filteredHindiMovies = hindiMoviesData.filter(movie => movie.title.toLowerCase().includes(query));
+                const filteredSeries = seriesData.filter(series => series.title.toLowerCase().includes(query));
+                
+                populateContentSlider('movies-grid', filteredMovies);
+                populateContentSlider('hindi-movies-grid', filteredHindiMovies);
+                populateContentSlider('series-grid', filteredSeries);
+            });
+
+            // --- GENERAL PAGE SCRIPTS ---
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 100);
+            });
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                    }
+                });
+            });
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                backToTopButton.classList.toggle('active', window.scrollY > 300);
+            });
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-links a');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+            });
             const cookieBanner = document.getElementById('cookie-banner');
             const cookieAcceptButton = document.getElementById('cookie-accept');
             if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => {
-                    cookieBanner.classList.add('show');
-                }, 1500);
+                setTimeout(() => cookieBanner.classList.add('show'), 1500);
             }
             cookieAcceptButton.addEventListener('click', () => {
                 cookieBanner.classList.remove('show');
                 localStorage.setItem('cookiesAccepted', 'true');
             });
-
-            // Modal Functionality
             const modalTriggers = document.querySelectorAll('[data-modal-target]');
             modalTriggers.forEach(trigger => {
                 trigger.addEventListener('click', () => {
-                    const modalId = trigger.getAttribute('data-modal-target');
-                    const modal = document.getElementById(modalId);
+                    const modal = document.getElementById(trigger.getAttribute('data-modal-target'));
                     if (modal) {
                         modal.style.display = "block";
                         document.body.classList.add('modal-open');
                     }
                 });
             });
-
             function closeModal(modal) {
                 modal.style.display = "none";
-                const anyModalOpen = Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block');
-                if (!anyModalOpen) {
+                if (!Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block')) {
                     document.body.classList.remove('modal-open');
                 }
             }
-
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
+            document.querySelectorAll('.modal').forEach(modal => {
                 const closeBtn = modal.querySelector('.close-btn');
                 if (closeBtn) {
                     closeBtn.addEventListener('click', () => closeModal(modal));
@@ -1471,7 +1484,5 @@
             });
         });
     </script>
-    <!-- Popunder Ad -->
-    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
 </body>
 </html>
