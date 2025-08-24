@@ -68,7 +68,7 @@
 
         /* Header */
         header {
-            padding: 15px 0;
+            padding: 15px 0 10px; /* Added bottom padding for ad */
             background-color: rgba(0, 0, 0, 0.9);
             position: fixed;
             width: 100%;
@@ -952,7 +952,33 @@
             .section { padding: 70px 0; scroll-margin-top: 60px; }
             .modal-content { margin: 20% auto; padding: 20px; }
         }
+
+        /* Ad Styling */
+        .ad-container {
+            position: relative;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .ad-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #007BFF; /* Blue background */
+            color: white;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            border-bottom-left-radius: 5px;
+            z-index: 1;
+        }
+        .header-ad-container {
+             margin: 15px auto 0;
+        }
+
     </style>
+    <!-- Popunder Ad -->
+    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
 </head>
 <body>
     <!-- SCRIPT to prevent flash of wrong theme -->
@@ -999,6 +1025,20 @@
                 </div>
             </div>
         </div>
+        <!-- Banner 468×60 Ad moved to header -->
+        <div class="ad-container header-ad-container">
+            <div class="ad-label">Ad</div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'cd453ad740a06faedb49eeaec96b619c',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//regularseatradio.com/cd453ad740a06faedb49eeaec96b619c/invoke.js"></script>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -1008,7 +1048,8 @@
                 <h1>Unlimited movies, TV shows, and more.</h1>
                 <p>Watch anywhere. Cancel anytime. Premium entertainment at your fingertips.</p>
                 <div class="btn-group">
-                    <a href="#" class="btn btn-lg">Watch Now</a>
+                    <!-- Smartlink added to Watch Now button -->
+                    <a href="https://regularseatradio.com/p4e8jz7i?key=d1fbf97a8766a64db5cf91b89e0220ef" class="btn btn-lg">Watch Now</a>
                     <a href="#" class="btn btn-lg btn-outline">Learn More</a>
                 </div>
             </div>
@@ -1030,6 +1071,12 @@
     <!-- Featured Movies Section -->
     <section class="section" id="movies">
         <div class="container">
+            <!-- Banner Abobe Bangle Natok -->
+            <div class="ad-container">
+                <div class="ad-label">Ad</div>
+                <a href="" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/700%20x%2090%20px.png" /></a>
+            </div>
+
             <h2 class="section-title">Bangla Natok</h2>
             <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics.</p>
             <div class="slider-container">
@@ -1045,6 +1092,21 @@
             </div>
         </div>
     </section>
+    
+    <!-- Banner 320×50 (Abobe Hindi Blockbuster Section) -->
+    <div class="ad-container">
+        <div class="ad-label">Ad</div>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '8ac60b63bca7574d012e68531d5cd632',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
+    </div>
 
     <!-- Hindi Movies Section -->
     <section class="section" id="hindi-movies">
@@ -1106,6 +1168,13 @@
             </div>
         </div>
     </section>
+
+    <!-- Native banner : ( abobe download the movie hub app section ) -->
+    <div class="ad-container">
+        <div class="ad-label">Ad</div>
+        <script async="async" data-cfasync="false" src="//regularseatradio.com/8bcb83aa1a9b50517463e7953e55a2c0/invoke.js"></script>
+        <div id="container-8bcb83aa1a9b50517463e7953e55a2c0"></div>
+    </div>
 
     <!-- App Section -->
     <section class="section app-section" id="app">
@@ -1484,5 +1553,7 @@
             });
         });
     </script>
+    <!-- Social bar -->
+    <script type='text/javascript' src='//regularseatradio.com/7a/1a/90/7a1a90ecb23513db59bec586e4062520.js'></script>
 </body>
 </html>
