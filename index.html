@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Hub</title>
+    
+    <!-- ================= SEO META TAGS ================= -->
+    <title>Movie Hub | Watch Unlimited Movies, TV Shows & Series Online in HD</title>
+    <meta name="description" content="Join Movie Hub to stream thousands of the latest movies, popular TV shows, and exclusive web series online. Enjoy unlimited entertainment in HD quality, anywhere, anytime.">
+    <meta name="keywords" content="movies, tv shows, web series, stream movies, watch online, movie hub, online streaming, HD movies, latest movies 2025, bollywood, bangla natok">
+    <link rel="canonical" href="https://your-movie-hub-domain.com/"> <!-- Replace with your actual domain -->
+    <meta name="robots" content="index, follow">
+
+    <!-- ================= OPEN GRAPH (FOR SOCIAL MEDIA) ================= -->
+    <meta property="og:title" content="Movie Hub | Watch Unlimited Movies, TV Shows & Series Online">
+    <meta property="og:description" content="Stream thousands of the latest movies, popular TV shows, and exclusive web series online in HD.">
+    <meta property="og:image" content="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg"> <!-- A good preview image -->
+    <meta property="og:url" content="https://your-movie-hub-domain.com/"> <!-- Replace with your actual domain -->
+    <meta property="og:type" content="website">
+
+    <!-- ================= TWITTER CARD (FOR TWITTER SHARING) ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Movie Hub | Watch Unlimited Movies, TV Shows & Series Online">
+    <meta name="twitter:description" content="Stream thousands of the latest movies, popular TV shows, and exclusive web series online in HD.">
+    <meta name="twitter:image" content="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg"> <!-- A good preview image -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     
     <!-- === PERFORMANCE OPTIMIZATIONS === -->
-    <!-- Preconnect to external domains for faster connection setup -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
     <link rel="preconnect" href="https://i.postimg.cc" crossorigin>
-    <!-- Preload the most important image (Largest Contentful Paint) -->
     <link rel="preload" as="image" href="https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg">
     
     <style>
@@ -21,7 +39,7 @@
             --primary-color: #e50914;
             --secondary-color: #f5f5f1;
             --dark-color: #333;
-            --light-color: #fff;
+            --ligcht-color: #fff;
             --gray-color: #777;
             --border-color: #e0e0e0;
             --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -58,6 +76,50 @@
         body.modal-open {
             overflow: hidden;
         }
+        
+        /* === NEW: PRELOADER STYLES === */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            background-color: var(--body-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.75s ease, visibility 0.75s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        body.dark-theme .spinner {
+             border: 5px solid rgba(255, 255, 255, 0.1);
+             border-top-color: var(--primary-color);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
 
         .container {
             max-width: 1200px;
@@ -977,6 +1039,36 @@
         }
 
     </style>
+
+    <!-- ================= JSON-LD STRUCTURED DATA (SCHEMA MARKUP) ================= -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Movie Hub",
+      "url": "https://your-movie-hub-domain.com/", 
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://your-movie-hub-domain.com/search?q={search_term_string}", 
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Movie Hub",
+      "url": "https://your-movie-hub-domain.com/",
+      "logo": "https://your-movie-hub-domain.com/logo.png", 
+      "sameAs": [
+        "https://www.facebook.com/yourprofile",
+        "https://www.twitter.com/yourprofile",
+        "https://www.instagram.com/yourprofile"
+      ]
+    }
+    </script>
+    
     <!-- Popunder Ad -->
     <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
 </head>
@@ -990,44 +1082,111 @@
             }
         })();
     </script>
+
+    <!-- === PRELOADER HTML === -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
     
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-film"></i>
+                <i class="fas fa-film" aria-hidden="true"></i>
                 Movie Hub
             </div>
             <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
                 <input type="search" id="search-input" placeholder="Search movies or shows...">
             </div>
             
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#movies">Movies</a></li>
-                <li><a href="#hindi-movies">Hindi Movies</a></li>
-                <li><a href="#series">TV Shows</a></li>
-                <li><a href="#unlimited">Unlimited</a></li>
-                <li><a href="#app">Download App</a></li>
-            </ul>
+            <!-- SEO: Added <nav> for semantic structure -->
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#movies">Movies</a></li>
+                    <li><a href="#hindi-movies">Hindi Movies</a></li>
+                    <li><a href="#series">TV Shows</a></li>
+                    <li><a href="#unlimited">Unlimited</a></li>
+                    <li><a href="#app">Download App</a></li>
+                </ul>
+            </nav>
 
-            <!-- === NEW: Right side header controls === -->
             <div class="header-controls">
-                <div class="theme-switcher" id="theme-switcher">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
+                <!-- SEO: Added aria-label for accessibility -->
+                <div class="theme-switcher" id="theme-switcher" aria-label="Toggle dark and light theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
                 </div>
-                <div class="menu-toggle" id="mobile-menu">
+                <div class="menu-toggle" id="mobile-menu" aria-label="Open mobile menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
             </div>
         </div>
-        <!-- Banner 468×60 Ad moved to header -->
         <div class="ad-container header-ad-container">
-            <div class="ad-label">Ad</div>
+             <script type="text/javascript">
+                atOptions = {
+                    'key' : '8ac60b63bca7574d012e68531d5cd632',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
+        </div>
+    </header>
+
+    <!-- SEO: Added <main> tag for main content area -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Unlimited movies, TV shows, and more.</h1>
+                    <p>Watch anywhere. Cancel anytime. Premium entertainment at your fingertips.</p>
+                    <div class="btn-group">
+                        <a href="https://regularseatradio.com/p4e8jz7i?key=d1fbf97a8766a64db5cf91b89e0220ef" class="btn btn-lg">Watch Now</a>
+                        <a href="#" class="btn btn-lg btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auto Slider Section -->
+        <section class="auto-slider-section">
+            <div class="swiper auto-slider-container">
+                <div class="swiper-wrapper" id="auto-slider-wrapper">
+                    <!-- Auto-slides will be injected here -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <!-- Featured Movies Section -->
+        <section class="section" id="movies">
+            <div class="container">
+                <h2 class="section-title">Bangla Natok</h2>
+                <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics ready to stream.</p>
+                <div class="slider-container">
+                    <div class="swiper content-slider">
+                        <div class="swiper-wrapper" id="movies-grid">
+                            <!-- Movie Cards will be dynamically inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="content-slider-navigation">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="ad-container">
             <script type="text/javascript">
                 atOptions = {
                     'key' : 'cd453ad740a06faedb49eeaec96b619c',
@@ -1039,192 +1198,136 @@
             </script>
             <script type="text/javascript" src="//regularseatradio.com/cd453ad740a06faedb49eeaec96b619c/invoke.js"></script>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Unlimited movies, TV shows, and more.</h1>
-                <p>Watch anywhere. Cancel anytime. Premium entertainment at your fingertips.</p>
-                <div class="btn-group">
-                    <!-- Smartlink added to Watch Now button -->
-                    <a href="https://regularseatradio.com/p4e8jz7i?key=d1fbf97a8766a64db5cf91b89e0220ef" class="btn btn-lg">Watch Now</a>
-                    <a href="#" class="btn btn-lg btn-outline">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Auto Slider Section -->
-    <section class="auto-slider-section">
-        <div class="swiper auto-slider-container">
-            <div class="swiper-wrapper" id="auto-slider-wrapper">
-                <!-- Auto-slides will be injected here -->
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </section>
-
-    <!-- Featured Movies Section -->
-    <section class="section" id="movies">
-        <div class="container">
-            <!-- Banner Abobe Bangle Natok -->
-            <div class="ad-container">
-                <div class="ad-label">Ad</div>
-                <a href="" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/700%20x%2090%20px.png" /></a>
-            </div>
-
-            <h2 class="section-title">Bangla Natok</h2>
-            <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics.</p>
-            <div class="slider-container">
-                <div class="swiper content-slider">
-                    <div class="swiper-wrapper" id="movies-grid">
-                        <!-- Movie Cards will be dynamically inserted here by JavaScript -->
-                    </div>
-                </div>
-                <div class="content-slider-navigation">
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Banner 320×50 (Abobe Hindi Blockbuster Section) -->
-    <div class="ad-container">
-        <div class="ad-label">Ad</div>
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '8ac60b63bca7574d012e68531d5cd632',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
-    </div>
-
-    <!-- Hindi Movies Section -->
-    <section class="section" id="hindi-movies">
-        <div class="container">
-            <h2 class="section-title">Hindi Blockbusters</h2>
-            <p class="section-subtitle">Enjoy the best of Bollywood, from evergreen hits to the latest blockbusters.</p>
-            <div class="slider-container">
-                <div class="swiper content-slider">
-                    <div class="swiper-wrapper" id="hindi-movies-grid">
-                        <!-- Hindi Movie Cards will be dynamically inserted here by JavaScript -->
-                    </div>
-                </div>
-                <div class="content-slider-navigation">
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Web Series Section -->
-    <section class="section" id="series">
-        <div class="container">
-            <h2 class="section-title">Popular Web Series</h2>
-            <p class="section-subtitle">Binge-watch the most talked-about shows from around the world.</p>
-            <div class="category-tabs">
-                <div class="category-tab active">All</div>
-                <div class="category-tab">Action</div>
-                <div class="category-tab">Drama</div>
-                <div class="category-tab">Comedy</div>
-                <div class="category-tab">Sci-Fi</div>
-                <div class="category-tab">Thriller</div>
-                <div class="category-tab">Fantasy</div>
-            </div>
-            <div class="slider-container">
-                <div class="swiper content-slider">
-                    <div class="swiper-wrapper" id="series-grid">
-                        <!-- Series Cards will be dynamically inserted here by JavaScript -->
-                    </div>
-                </div>
-                <div class="content-slider-navigation">
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Unlimited Entertainment Section -->
-    <section class="section" id="unlimited">
-        <div class="container">
-            <h2 class="section-title">Unlimited Entertainment</h2>
-            <p class="section-subtitle">Explore a massive library of movies and shows from every genre. New titles are added every week, so there's always something new to discover.</p>
-            <div class="unlimited-grid" id="unlimited-grid">
-                <!-- Posters will be dynamically inserted here by JavaScript -->
-            </div>
-            <div class="unlimited-cta">
-                 <a href="#" class="btn btn-lg">Start Your Free Trial</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Native banner : ( abobe download the movie hub app section ) -->
-    <div class="ad-container">
-        <div class="ad-label">Ad</div>
-        <script async="async" data-cfasync="false" src="//regularseatradio.com/8bcb83aa1a9b50517463e7953e55a2c0/invoke.js"></script>
-        <div id="container-8bcb83aa1a9b50517463e7953e55a2c0"></div>
-    </div>
-
-    <!-- App Section -->
-    <section class="section app-section" id="app">
-        <div class="container app-container">
-            <div class="app-content">
-                <h2 class="section-title">Download the Movie Hub App</h2>
-                <p class="section-subtitle">Watch your favorite movies and TV shows on the go. Download the Movie Hub app now and enjoy unlimited entertainment anywhere, anytime.</p>
-                <div class="app-buttons">
-                    <a href="#" class="app-btn">
-                        <i class="fab fa-apple"></i>
-                        <div class="app-btn-text">
-                            <span>Download on the</span>
-                            <span>App Store</span>
+        <!-- Hindi Movies Section -->
+        <section class="section" id="hindi-movies">
+            <div class="container">
+                <h2 class="section-title">Hindi Blockbusters</h2>
+                <p class="section-subtitle">Enjoy the best of Bollywood online, from evergreen hits to the latest blockbusters.</p>
+                <div class="slider-container">
+                    <div class="swiper content-slider">
+                        <div class="swiper-wrapper" id="hindi-movies-grid">
+                            <!-- Hindi Movie Cards will be dynamically inserted here by JavaScript -->
                         </div>
-                    </a>
-                    <a href="#" class="app-btn">
-                        <i class="fab fa-google-play"></i>
-                        <div class="app-btn-text">
-                            <span>Get it on</span>
-                            <span>Google Play</span>
-                        </div>
-                    </a>
+                    </div>
+                    <div class="content-slider-navigation">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
                 </div>
             </div>
-            <div class="app-image">
-                <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png" alt="Movie Hub App" loading="lazy">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Picture Section -->
-    <section class="picture-section">
-        <div class="container">
-            <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Featured Content" loading="lazy">
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="section newsletter-section">
-        <div class="container">
-            <div class="newsletter">
-                <h2>Stay Updated</h2>
-                <p>Subscribe to our newsletter for the latest movie releases, exclusive content, and special offers.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
+        <!-- Web Series Section -->
+        <section class="section" id="series">
+            <div class="container">
+                <h2 class="section-title">Popular Web Series</h2>
+                <p class="section-subtitle">Binge-watch the most talked-about TV shows from around the world, available for streaming now.</p>
+                <div class="category-tabs">
+                    <div class="category-tab active">All</div>
+                    <div class="category-tab">Action</div>
+                    <div class="category-tab">Drama</div>
+                    <div class="category-tab">Comedy</div>
+                    <div class="category-tab">Sci-Fi</div>
+                    <div class="category-tab">Thriller</div>
+                    <div class="category-tab">Fantasy</div>
+                </div>
+                <div class="slider-container">
+                    <div class="swiper content-slider">
+                        <div class="swiper-wrapper" id="series-grid">
+                            <!-- Series Cards will be dynamically inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="content-slider-navigation">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- Unlimited Entertainment Section -->
+        <section class="section" id="unlimited">
+            <div class="container">
+                <h2 class="section-title">Unlimited Entertainment Online</h2>
+                <p class="section-subtitle">Explore a massive library of movies and shows from every genre. New titles are added every week, so there's always something new to discover.</p>
+                <div class="unlimited-grid" id="unlimited-grid">
+                    <!-- Posters will be dynamically inserted here by JavaScript -->
+                </div>
+                <div class="unlimited-cta">
+                     <a href="#" class="btn btn-lg">Start Your Free Trial</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-container">
+            <script async="async" data-cfasync="false" src="//regularseatradio.com/8bcb83aa1a9b50517463e7953e55a2c0/invoke.js"></script>
+            <div id="container-8bcb83aa1a9b50517463e7953e55a2c0"></div>
         </div>
-    </section>
+
+        <!-- App Section -->
+        <section class="section app-section" id="app">
+            <div class="container app-container">
+                <div class="app-content">
+                    <h2 class="section-title">Download the Movie Hub App</h2>
+                    <p class="section-subtitle">Watch your favorite movies and TV shows on the go. Download the Movie Hub app now and enjoy unlimited entertainment anywhere, anytime.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple" aria-hidden="true"></i>
+                            <div class="app-btn-text">
+                                <span>Download on the</span>
+                                <span>App Store</span>
+                            </div>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play" aria-hidden="true"></i>
+                            <div class="app-btn-text">
+                                <span>Get it on</span>
+                                <span>Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png" alt="Movie Hub app interface shown on a mobile device" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Picture Section -->
+        <section class="picture-section">
+            <div class="container">
+                <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Promotional banner for Movie Hub's extensive library" loading="lazy">
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="section newsletter-section">
+            <div class="container">
+                <div class="newsletter">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to our newsletter for the latest movie releases, exclusive content, and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '674846739dd454e40f89892202117c13',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//regularseatradio.com/674846739dd454e40f89892202117c13/invoke.js"></script>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -1232,14 +1335,15 @@
             <div class="footer-container">
                 <div class="footer-about">
                     <a href="#" class="footer-logo">
-                        <i class="fas fa-film"></i> Movie Hub
+                        <i class="fas fa-film" aria-hidden="true"></i> Movie Hub
                     </a>
                     <p>The ultimate destination for movie lovers. Stream thousands of movies and TV shows in stunning quality.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <!-- SEO: Added aria-label for accessibility -->
+                        <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Subscribe to our Youtube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1273,14 +1377,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Movie Hub. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary-color);"></i> by Movie Hub Team</p>
+                <p>&copy; 2025 Movie Hub. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary-color);" aria-hidden="true"></i> by Movie Hub Team</p>
             </div>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <div class="back-to-top" id="back-to-top">
-        <i class="fas fa-arrow-up"></i>
+    <div class="back-to-top" id="back-to-top" aria-label="Back to top of the page">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </div>
 
     <!-- Cookie Consent Banner -->
@@ -1335,6 +1439,15 @@
             { title: 'Wednesday', year: '2022-Present', rating: '8.7', img: 'https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg' }
         ];
 
+        // --- PRELOADER SCRIPT ---
+        const preloader = document.getElementById('preloader');
+        window.addEventListener('load', function () {
+            preloader.classList.add('hidden');
+            preloader.addEventListener('transitionend', function() {
+                preloader.remove();
+            });
+        });
+
         // All scripts that run after the DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -1342,7 +1455,6 @@
             const themeSwitcher = document.getElementById('theme-switcher');
             themeSwitcher.addEventListener('click', () => {
                 document.body.classList.toggle('dark-theme');
-                // Save the user's preference in localStorage
                 if (document.body.classList.contains('dark-theme')) {
                     localStorage.setItem('theme', 'dark');
                 } else {
@@ -1553,7 +1665,5 @@
             });
         });
     </script>
-    <!-- Social bar -->
-    <script type='text/javascript' src='//regularseatradio.com/7a/1a/90/7a1a90ecb23513db59bec586e4062520.js'></script>
 </body>
 </html>
