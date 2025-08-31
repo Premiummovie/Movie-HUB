@@ -10,6 +10,7 @@
     <meta name="keywords" content="movies, tv shows, web series, stream movies, watch online, movie hub, online streaming, HD movies, latest movies 2025, bollywood, bangla natok">
     <link rel="canonical" href="https://your-movie-hub-domain.com/"> <!-- Replace with your actual domain -->
     <meta name="robots" content="index, follow">
+    <meta name="monetag" content="244a68ec51ce815b63112966a14acd2f">
 
     <!-- ================= OPEN GRAPH (FOR SOCIAL MEDIA) ================= -->
     <meta property="og:title" content="Movie Hub | Watch Unlimited Movies, TV Shows & Series Online">
@@ -130,7 +131,7 @@
 
         /* Header */
         header {
-            padding: 15px 0 10px; /* Added bottom padding for ad */
+            padding: 15px 0;
             background-color: rgba(0, 0, 0, 0.9);
             position: fixed;
             width: 100%;
@@ -957,6 +958,80 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* === NEW: Timed Pop-up Modal Styles === */
+        .timed-modal {
+            display: none; /* Initially hidden */
+            position: fixed;
+            z-index: 10002; /* Higher than other modals */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .timed-modal.show {
+            display: flex; /* Show the modal */
+        }
+
+        .timed-modal-content {
+            background-color: var(--secondary-color);
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.5s;
+            overflow: hidden;
+        }
+
+        .timed-modal-content img {
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+        
+        .timed-modal-signup-btn {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 20px;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .timed-modal-signup-btn:hover {
+            background-color: #c11119;
+        }
+
+        .timed-modal .close-btn {
+            color: #fff;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+        }
+
+        .timed-modal .close-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+
         /* Responsive */
         @media (max-width: 992px) {
             .hero h1 { font-size: 2.8rem; }
@@ -1013,29 +1088,7 @@
             .app-buttons { flex-direction: column; }
             .section { padding: 70px 0; scroll-margin-top: 60px; }
             .modal-content { margin: 20% auto; padding: 20px; }
-        }
-
-        /* Ad Styling */
-        .ad-container {
-            position: relative;
-            display: block;
-            margin: 20px auto;
-            text-align: center;
-        }
-        .ad-label {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: #007BFF; /* Blue background */
-            color: white;
-            padding: 2px 6px;
-            font-size: 10px;
-            font-weight: bold;
-            border-bottom-left-radius: 5px;
-            z-index: 1;
-        }
-        .header-ad-container {
-             margin: 15px auto 0;
+            .timed-modal-content { width: 95%; }
         }
 
     </style>
@@ -1068,9 +1121,7 @@
       ]
     }
     </script>
-    
-    <!-- Popunder Ad -->
-    <script type='text/javascript' src='//regularseatradio.com/dd/0a/1e/dd0a1e21bc7909e5d625d459f1806ba4.js'></script>
+
 </head>
 <body>
     <!-- SCRIPT to prevent flash of wrong theme -->
@@ -1125,18 +1176,6 @@
                 </div>
             </div>
         </div>
-        <div class="ad-container header-ad-container">
-             <script type="text/javascript">
-                atOptions = {
-                    'key' : '8ac60b63bca7574d012e68531d5cd632',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//regularseatradio.com/8ac60b63bca7574d012e68531d5cd632/invoke.js"></script>
-        </div>
     </header>
 
     <!-- SEO: Added <main> tag for main content area -->
@@ -1148,7 +1187,7 @@
                     <h1>Unlimited movies, TV shows, and more.</h1>
                     <p>Watch anywhere. Cancel anytime. Premium entertainment at your fingertips.</p>
                     <div class="btn-group">
-                        <a href="https://regularseatradio.com/p4e8jz7i?key=d1fbf97a8766a64db5cf91b89e0220ef" class="btn btn-lg">Watch Now</a>
+                        <a href="#" class="btn btn-lg">Watch Now</a>
                         <a href="#" class="btn btn-lg btn-outline">Learn More</a>
                     </div>
                 </div>
@@ -1185,19 +1224,6 @@
                 </div>
             </div>
         </section>
-        
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'cd453ad740a06faedb49eeaec96b619c',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//regularseatradio.com/cd453ad740a06faedb49eeaec96b619c/invoke.js"></script>
-        </div>
 
         <!-- Hindi Movies Section -->
         <section class="section" id="hindi-movies">
@@ -1260,11 +1286,6 @@
             </div>
         </section>
 
-        <div class="ad-container">
-            <script async="async" data-cfasync="false" src="//regularseatradio.com/8bcb83aa1a9b50517463e7953e55a2c0/invoke.js"></script>
-            <div id="container-8bcb83aa1a9b50517463e7953e55a2c0"></div>
-        </div>
-
         <!-- App Section -->
         <section class="section app-section" id="app">
             <div class="container app-container">
@@ -1315,18 +1336,6 @@
             </div>
         </section>
 
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '674846739dd454e40f89892202117c13',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//regularseatradio.com/674846739dd454e40f89892202117c13/invoke.js"></script>
-        </div>
     </main>
 
     <!-- Footer -->
@@ -1398,6 +1407,15 @@
     <div id="privacy-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Privacy Policy</h2><p>Your privacy is important to us. It is Movie Hub's policy to respect your privacy regarding any information we may collect from you across our website.</p><p>We only retain collected information for as long as necessary to provide you with your requested service.</p></div></div>
     <div id="cookie-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Cookie Policy</h2><p>This site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience.</p><p>We use cookies for a variety of reasons. It is recommended that you leave on all cookies if you are not sure whether you need them or not.</p></div></div>
     <div id="gdpr-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>GDPR Information</h2><p>The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy.</p><p>You have the right to access, rectify, or erase your personal data under certain conditions.</p></div></div>
+
+    <!-- === NEW: TIMED POP-UP MODAL === -->
+    <div id="timed-modal" class="timed-modal">
+        <div class="timed-modal-content">
+            <span class="close-btn">&times;</span>
+            <img src="https://i.postimg.cc/VkyN4srt/Screenshot-20250831-230938-1.jpg" alt="Special Offer">
+            <a href="#" class="timed-modal-signup-btn">Sign Up Now</a>
+        </div>
+    </div>
 
     <!-- Swiper.js JS (deferred for faster page load) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -1663,6 +1681,36 @@
                     }
                 });
             });
+
+            // --- TIMED POP-UP MODAL LOGIC ---
+            const timedModal = document.getElementById('timed-modal');
+            const timedModalCloseBtn = timedModal.querySelector('.close-btn');
+
+            // Function to show the modal
+            const showTimedModal = () => {
+                timedModal.classList.add('show');
+                document.body.classList.add('modal-open');
+            };
+
+            // Function to hide the modal
+            const hideTimedModal = () => {
+                timedModal.classList.remove('show');
+                document.body.classList.remove('modal-open');
+            };
+
+            // Set a timer to show the modal after 10 seconds (10000 milliseconds)
+            setTimeout(showTimedModal, 10000);
+
+            // Close the modal when the close button is clicked
+            timedModalCloseBtn.addEventListener('click', hideTimedModal);
+
+            // Close the modal when clicking outside the content area
+            timedModal.addEventListener('click', (event) => {
+                if (event.target === timedModal) {
+                    hideTimedModal();
+                }
+            });
+
         });
     </script>
 </body>
