@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://fpyf8.com/88/tag.min.js" data-zone="167719" async data-cfasync="false"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -78,7 +79,6 @@
             overflow: hidden;
         }
         
-        /* === NEW: PRELOADER STYLES === */
         #preloader {
             position: fixed;
             top: 0;
@@ -113,12 +113,8 @@
         }
 
         @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
 
@@ -128,8 +124,16 @@
             padding: 0 20px;
             overflow: hidden;
         }
+        
+        header, main, footer {
+            transition: filter 0.35s ease-in-out;
+        }
+        .content-blur {
+            filter: blur(5px);
+            pointer-events: none;
+        }
 
-        /* Header */
+
         header {
             padding: 15px 0;
             background-color: rgba(0, 0, 0, 0.9);
@@ -164,7 +168,6 @@
             margin-right: 10px;
         }
 
-        /* Search Bar in Header */
         .search-container {
             position: relative;
             margin-left: 20px;
@@ -183,7 +186,7 @@
             border: 1px solid #444;
             border-radius: 20px;
             color: #fff;
-            padding: 8px 15px 8px 40px; /* Left padding for icon */
+            padding: 8px 15px 8px 40px;
             width: 250px;
             transition: all 0.3s ease;
         }
@@ -196,13 +199,13 @@
             outline: none;
             border-color: var(--primary-color);
             background-color: #333;
-            width: 300px; /* Expand on focus */
+            width: 300px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            margin-left: auto; /* Push nav links to the right */
+            margin-left: auto;
             align-items: center;
         }
 
@@ -247,14 +250,12 @@
             width: 100%;
         }
         
-        /* === NEW: Container for right side controls === */
         .header-controls {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
-        /* === UPDATED: Theme Switcher Button === */
         .theme-switcher {
             color: white;
             cursor: pointer;
@@ -288,14 +289,18 @@
             transition: all 0.3s;
         }
 
-        /* Hero Section */
         .hero {
-            height: 100vh;
+            /* MODIFIED: Changed to 16:9 aspect ratio for a widescreen look */
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            max-height: 90vh; /* Prevents it from being too tall on ultrawide screens */
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                         url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
             position: relative;
             display: flex;
             align-items: center;
+            justify-content: center;
             color: #fff;
             text-align: center;
         }
@@ -343,17 +348,6 @@
             font-size: 1.2rem;
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #fff;
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Auto Slider Section */
         .auto-slider-section {
             padding: 50px 0;
             background-color: var(--secondary-color);
@@ -398,7 +392,6 @@
             max-width: 70%;
         }
 
-        /* Sections */
         .section {
             padding: 100px 0;
             scroll-margin-top: 80px;
@@ -438,7 +431,6 @@
             font-size: 1.1rem;
         }
 
-        /* Swiper.js Custom Styles */
         .slider-container {
             position: relative;
             padding: 0 10px;
@@ -502,7 +494,6 @@
             font-weight: bold;
         }
 
-        /* Swiper Navigation and Pagination */
         .swiper-button-next,
         .swiper-button-prev {
             width: 50px;
@@ -544,7 +535,6 @@
             background: var(--primary-color);
         }
 
-        /* Categories Section */
         .category-tabs {
             display: flex;
             margin-bottom: 30px;
@@ -567,7 +557,6 @@
             border-bottom: 3px solid var(--primary-color);
         }
         
-        /* Unlimited Grid Section */
         .unlimited-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -598,7 +587,6 @@
             margin-top: 50px;
         }
 
-        /* App Section */
         .app-section {
             background: var(--secondary-color);
             border-radius: 15px;
@@ -669,7 +657,6 @@
             font-size: 1.1rem;
         }
 
-        /* Picture Section */
         .picture-section {
             margin: 60px 0;
             text-align: center;
@@ -683,7 +670,6 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* Newsletter */
         .newsletter {
             text-align: center;
             padding: 60px 0;
@@ -738,7 +724,6 @@
             background: #222;
         }
 
-        /* Footer */
         footer {
             background: #1a1a1a;
             color: #f5f5f1;
@@ -822,7 +807,6 @@
             font-size: 0.9rem;
         }
 
-        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -854,7 +838,6 @@
             transform: translateY(-3px);
         }
 
-        /* Cookie Consent Banner */
         .cookie-consent-banner {
             position: fixed;
             bottom: 0;
@@ -866,7 +849,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 9999;
+            z-index: 10001; /* Must be higher than blurred content */
             transform: translateY(100%);
             transition: transform 0.5s ease-in-out;
             flex-wrap: wrap;
@@ -902,7 +885,6 @@
             background-color: #c11119;
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -924,7 +906,7 @@
             width: 80%;
             max-width: 800px;
             position: relative;
-            animation: fadeIn 0.5s;
+            animation: zoomIn 0.4s ease-out;
         }
 
         .modal-content h2 {
@@ -953,51 +935,69 @@
             text-decoration: none;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* === NEW: Timed Pop-up Modal Styles === */
         .timed-modal {
-            display: none; /* Initially hidden */
+            display: none;
             position: fixed;
-            z-index: 10002; /* Higher than other modals */
+            z-index: 10002;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
         }
         
         .timed-modal.show {
-            display: flex; /* Show the modal */
+            display: flex;
         }
 
         .timed-modal-content {
             background-color: var(--secondary-color);
             padding: 0;
             border-radius: 10px;
-            width: 90%;
-            max-width: 450px;
+            width: 100%;
+            max-width: 360px; 
             text-align: center;
             position: relative;
-            animation: fadeIn 0.5s;
+            animation: zoomIn 0.4s ease-out;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .timed-modal-content img {
             width: 100%;
             height: auto;
             vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .timed-modal-text {
+            padding: 25px;
+        }
+
+        .timed-modal-text h2 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .timed-modal-text p {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
         }
         
         .timed-modal-signup-btn {
             display: block;
-            width: calc(100% - 40px);
-            margin: 20px;
+            width: 100%;
             padding: 15px;
             background-color: var(--primary-color);
             color: white;
@@ -1015,20 +1015,25 @@
         }
 
         .timed-modal .close-btn {
-            color: #fff;
-            background-color: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
+            color: var(--gray-color);
+            background-color: transparent;
+            border-radius: 0;
+            width: auto;
+            height: auto;
+            line-height: 1;
             text-align: center;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+        }
+        
+        body.dark-theme .timed-modal .close-btn {
+            color: var(--gray-color);
         }
 
         .timed-modal .close-btn:hover {
-            background-color: rgba(0,0,0,0.8);
+            background-color: transparent;
+            color: var(--text-color);
         }
 
 
@@ -1049,26 +1054,30 @@
             .search-container { order: 3; width: 100%; margin: 10px 0 0 0; }
             #search-input, #search-input:focus { width: 100%; }
             
-            /* Hide nav links by default on mobile */
             .nav-links { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: rgba(0, 0, 0, 0.95); flex-direction: column; align-items: center; padding: 100px 0; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); transition: right 0.3s ease; margin-left: 0; }
             .nav-links.active { right: 0; }
             .nav-links li { margin: 15px 0; }
             .nav-links a { font-size: 1.2rem; padding: 10px 20px; }
             
-            /* UPDATED: Group controls and position them */
             .header-controls {
                 order: 2;
-                margin-left: auto; /* Push to the right */
+                margin-left: auto;
             }
             .menu-toggle { display: flex; }
             .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-            .hero { height: auto; padding: 150px 0 100px; text-align: center; }
+            /* MODIFIED: Revert hero section for mobile */
+            .hero {
+                height: auto;
+                padding: 150px 0 100px;
+                text-align: center;
+                aspect-ratio: auto; /* Revert aspect ratio on mobile */
+            }
+
             .hero h1 { font-size: 2.2rem; }
             .btn-group { display: flex; flex-direction: column; gap: 15px; }
-            .btn-outline { margin-left: 0; }
             .auto-slide-caption h3 { font-size: 1.5rem; }
             .auto-slide-caption p { font-size: 0.9rem; max-width: 90%; }
             .unlimited-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
@@ -1088,7 +1097,9 @@
             .app-buttons { flex-direction: column; }
             .section { padding: 70px 0; scroll-margin-top: 60px; }
             .modal-content { margin: 20% auto; padding: 20px; }
-            .timed-modal-content { width: 95%; }
+            .timed-modal-content { max-width: 95%; }
+            .timed-modal-text h2 { font-size: 1.5rem; }
+            .timed-modal-text { padding: 20px; }
         }
 
     </style>
@@ -1124,7 +1135,6 @@
 
 </head>
 <body>
-    <!-- SCRIPT to prevent flash of wrong theme -->
     <script>
         (function() {
             const currentTheme = localStorage.getItem('theme');
@@ -1134,24 +1144,25 @@
         })();
     </script>
 
-    <!-- === PRELOADER HTML === -->
     <div id="preloader">
         <div class="spinner"></div>
     </div>
     
-    <!-- Header -->
     <header id="header">
         <div class="container header-container">
             <div class="logo">
                 <i class="fas fa-film" aria-hidden="true"></i>
                 Movie Hub
             </div>
+             <!-- বিজ্ঞাপন কোড এখানে যুক্ত করা হয়েছে -->
+            <div class="header-ad">
+                <ins style="width: 468px;height:60px" data-width="468" data-height="60" class="i4434e91a10" data-domain="//data684.click" data-affquery="/4f3390e7a8135ddc7a44/4434e91a10/?placementName=default"><script src="//data684.click/js/responsive.js" async></script></ins>
+            </div>
             <div class="search-container">
                 <i class="fas fa-search search-icon" aria-hidden="true"></i>
                 <input type="search" id="search-input" placeholder="Search movies or shows...">
             </div>
             
-            <!-- SEO: Added <nav> for semantic structure -->
             <nav>
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#home" class="active">Home</a></li>
@@ -1164,7 +1175,6 @@
             </nav>
 
             <div class="header-controls">
-                <!-- SEO: Added aria-label for accessibility -->
                 <div class="theme-switcher" id="theme-switcher" aria-label="Toggle dark and light theme">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                     <i class="fas fa-sun" aria-hidden="true"></i>
@@ -1178,9 +1188,7 @@
         </div>
     </header>
 
-    <!-- SEO: Added <main> tag for main content area -->
     <main>
-        <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="container">
                 <div class="hero-content">
@@ -1188,34 +1196,27 @@
                     <p>Watch anywhere. Cancel anytime. Premium entertainment at your fingertips.</p>
                     <div class="btn-group">
                         <a href="#" class="btn btn-lg">Watch Now</a>
-                        <a href="#" class="btn btn-lg btn-outline">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Auto Slider Section -->
         <section class="auto-slider-section">
             <div class="swiper auto-slider-container">
-                <div class="swiper-wrapper" id="auto-slider-wrapper">
-                    <!-- Auto-slides will be injected here -->
-                </div>
+                <div class="swiper-wrapper" id="auto-slider-wrapper"></div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
         </section>
 
-        <!-- Featured Movies Section -->
         <section class="section" id="movies">
             <div class="container">
                 <h2 class="section-title">Bangla Natok</h2>
                 <p class="section-subtitle">Discover our curated collection of blockbuster movies and timeless classics ready to stream.</p>
                 <div class="slider-container">
                     <div class="swiper content-slider">
-                        <div class="swiper-wrapper" id="movies-grid">
-                            <!-- Movie Cards will be dynamically inserted here by JavaScript -->
-                        </div>
+                        <div class="swiper-wrapper" id="movies-grid"></div>
                     </div>
                     <div class="content-slider-navigation">
                         <div class="swiper-button-prev"></div>
@@ -1225,16 +1226,13 @@
             </div>
         </section>
 
-        <!-- Hindi Movies Section -->
         <section class="section" id="hindi-movies">
             <div class="container">
                 <h2 class="section-title">Hindi Blockbusters</h2>
                 <p class="section-subtitle">Enjoy the best of Bollywood online, from evergreen hits to the latest blockbusters.</p>
                 <div class="slider-container">
                     <div class="swiper content-slider">
-                        <div class="swiper-wrapper" id="hindi-movies-grid">
-                            <!-- Hindi Movie Cards will be dynamically inserted here by JavaScript -->
-                        </div>
+                        <div class="swiper-wrapper" id="hindi-movies-grid"></div>
                     </div>
                     <div class="content-slider-navigation">
                         <div class="swiper-button-prev"></div>
@@ -1244,7 +1242,6 @@
             </div>
         </section>
 
-        <!-- Web Series Section -->
         <section class="section" id="series">
             <div class="container">
                 <h2 class="section-title">Popular Web Series</h2>
@@ -1260,9 +1257,7 @@
                 </div>
                 <div class="slider-container">
                     <div class="swiper content-slider">
-                        <div class="swiper-wrapper" id="series-grid">
-                            <!-- Series Cards will be dynamically inserted here by JavaScript -->
-                        </div>
+                        <div class="swiper-wrapper" id="series-grid"></div>
                     </div>
                     <div class="content-slider-navigation">
                         <div class="swiper-button-prev"></div>
@@ -1272,21 +1267,17 @@
             </div>
         </section>
 
-        <!-- Unlimited Entertainment Section -->
         <section class="section" id="unlimited">
             <div class="container">
                 <h2 class="section-title">Unlimited Entertainment Online</h2>
                 <p class="section-subtitle">Explore a massive library of movies and shows from every genre. New titles are added every week, so there's always something new to discover.</p>
-                <div class="unlimited-grid" id="unlimited-grid">
-                    <!-- Posters will be dynamically inserted here by JavaScript -->
-                </div>
+                <div class="unlimited-grid" id="unlimited-grid"></div>
                 <div class="unlimited-cta">
                      <a href="#" class="btn btn-lg">Start Your Free Trial</a>
                 </div>
             </div>
         </section>
 
-        <!-- App Section -->
         <section class="section app-section" id="app">
             <div class="container app-container">
                 <div class="app-content">
@@ -1315,14 +1306,12 @@
             </div>
         </section>
 
-        <!-- Picture Section -->
         <section class="picture-section">
             <div class="container">
                 <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Promotional banner for Movie Hub's extensive library" loading="lazy">
             </div>
         </section>
 
-        <!-- Newsletter -->
         <section class="section newsletter-section">
             <div class="container">
                 <div class="newsletter">
@@ -1338,7 +1327,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-container">
@@ -1348,7 +1336,6 @@
                     </a>
                     <p>The ultimate destination for movie lovers. Stream thousands of movies and TV shows in stunning quality.</p>
                     <div class="social-links">
-                        <!-- SEO: Added aria-label for accessibility -->
                         <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
                         <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                         <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
@@ -1391,12 +1378,10 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top" aria-label="Back to top of the page">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </div>
 
-    <!-- Cookie Consent Banner -->
     <div class="cookie-consent-banner" id="cookie-banner">
         <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="javascript:void(0);" data-modal-target="cookie-modal">Learn More</a></p>
         <button class="cookie-accept-btn" id="cookie-accept">Accept</button>
@@ -1408,16 +1393,19 @@
     <div id="cookie-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Cookie Policy</h2><p>This site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience.</p><p>We use cookies for a variety of reasons. It is recommended that you leave on all cookies if you are not sure whether you need them or not.</p></div></div>
     <div id="gdpr-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>GDPR Information</h2><p>The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy.</p><p>You have the right to access, rectify, or erase your personal data under certain conditions.</p></div></div>
 
-    <!-- === NEW: TIMED POP-UP MODAL === -->
     <div id="timed-modal" class="timed-modal">
         <div class="timed-modal-content">
             <span class="close-btn">&times;</span>
             <img src="https://i.postimg.cc/VkyN4srt/Screenshot-20250831-230938-1.jpg" alt="Special Offer">
-            <a href="#" class="timed-modal-signup-btn">Sign Up Now</a>
+            <div class="timed-modal-text">
+                <h2>Special Offer!</h2>
+                <p>Sign up now to get exclusive access to our latest releases.</p>
+                <!-- সাইন আপ বাটনে আপনার লিংক এখানে দিন -->
+                <a href="https://otieu.com/4/9397981" class="timed-modal-signup-btn">Sign Up Now</a>
+            </div>
         </div>
     </div>
 
-    <!-- Swiper.js JS (deferred for faster page load) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script>
         // --- DATA FOR MOVIES & SERIES ---
@@ -1457,7 +1445,6 @@
             { title: 'Wednesday', year: '2022-Present', rating: '8.7', img: 'https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg' }
         ];
 
-        // --- PRELOADER SCRIPT ---
         const preloader = document.getElementById('preloader');
         window.addEventListener('load', function () {
             preloader.classList.add('hidden');
@@ -1466,10 +1453,8 @@
             });
         });
 
-        // All scripts that run after the DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
 
-            // --- THEME SWITCHER LOGIC ---
             const themeSwitcher = document.getElementById('theme-switcher');
             themeSwitcher.addEventListener('click', () => {
                 document.body.classList.toggle('dark-theme');
@@ -1480,7 +1465,6 @@
                 }
             });
 
-            // --- DYNAMIC AUTO SLIDER POPULATION ---
             function populateAutoSlider() {
                 const autoSliderWrapper = document.getElementById('auto-slider-wrapper');
                 if (!autoSliderWrapper) return;
@@ -1500,7 +1484,6 @@
                 }).join('');
             }
             
-            // --- DYNAMIC CONTENT SLIDER POPULATION ---
             function populateContentSlider(gridId, data) {
                 const grid = document.getElementById(gridId);
                 if (!grid) return;
@@ -1524,9 +1507,8 @@
                 `).join('');
             }
 
-            // --- SWIPER INITIALIZATION ---
             function initSwipers() {
-                const autoSlider = new Swiper('.auto-slider-container', {
+                new Swiper('.auto-slider-container', {
                     loop: true,
                     effect: 'fade',
                     fadeEffect: { crossFade: true },
@@ -1553,7 +1535,6 @@
                 });
             }
 
-            // --- UNLIMITED MOVIES GRID POPULATION ---
             function populateUnlimitedGrid() {
                 const unlimitedGrid = document.getElementById('unlimited-grid');
                 if (!unlimitedGrid) return;
@@ -1570,17 +1551,13 @@
                 `).join('');
             }
 
-            // Populate sliders and grid
             populateAutoSlider();
             populateContentSlider('movies-grid', moviesData);
             populateContentSlider('hindi-movies-grid', hindiMoviesData);
             populateContentSlider('series-grid', seriesData);
             populateUnlimitedGrid();
-            
-            // Initialize all Swiper instances
             initSwipers();
 
-            // --- SEARCH FUNCTIONALITY ---
             const searchInput = document.getElementById('search-input');
             searchInput.addEventListener('input', function() {
                 const query = this.value.toLowerCase().trim();
@@ -1593,7 +1570,6 @@
                 populateContentSlider('series-grid', filteredSeries);
             });
 
-            // --- GENERAL PAGE SCRIPTS ---
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinks = document.getElementById('nav-links');
             mobileMenu.addEventListener('click', () => {
@@ -1654,22 +1630,36 @@
                 cookieBanner.classList.remove('show');
                 localStorage.setItem('cookiesAccepted', 'true');
             });
+
+            // --- MODIFIED: MODAL LOGIC WITH BLUR EFFECT ---
+            
+            const pageElements = [
+                document.querySelector('header'),
+                document.querySelector('main'),
+                document.querySelector('footer'),
+                document.getElementById('back-to-top')
+            ];
+            
             const modalTriggers = document.querySelectorAll('[data-modal-target]');
             modalTriggers.forEach(trigger => {
                 trigger.addEventListener('click', () => {
                     const modal = document.getElementById(trigger.getAttribute('data-modal-target'));
                     if (modal) {
+                        pageElements.forEach(el => el.classList.add('content-blur'));
                         modal.style.display = "block";
                         document.body.classList.add('modal-open');
                     }
                 });
             });
+
             function closeModal(modal) {
                 modal.style.display = "none";
-                if (!Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block')) {
+                if (!Array.from(document.querySelectorAll('.modal, .timed-modal')).some(m => m.style.display === 'block' || m.classList.contains('show'))) {
+                    pageElements.forEach(el => el.classList.remove('content-blur'));
                     document.body.classList.remove('modal-open');
                 }
             }
+
             document.querySelectorAll('.modal').forEach(modal => {
                 const closeBtn = modal.querySelector('.close-btn');
                 if (closeBtn) {
@@ -1682,29 +1672,27 @@
                 });
             });
 
-            // --- TIMED POP-UP MODAL LOGIC ---
             const timedModal = document.getElementById('timed-modal');
             const timedModalCloseBtn = timedModal.querySelector('.close-btn');
 
-            // Function to show the modal
             const showTimedModal = () => {
+                pageElements.forEach(el => el.classList.add('content-blur'));
                 timedModal.classList.add('show');
                 document.body.classList.add('modal-open');
             };
 
-            // Function to hide the modal
             const hideTimedModal = () => {
                 timedModal.classList.remove('show');
-                document.body.classList.remove('modal-open');
+                if (!Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block')) {
+                    pageElements.forEach(el => el.classList.remove('content-blur'));
+                    document.body.classList.remove('modal-open');
+                }
             };
 
-            // Set a timer to show the modal after 10 seconds (10000 milliseconds)
-            setTimeout(showTimedModal, 10000);
+            setTimeout(showTimedModal, 50000);
 
-            // Close the modal when the close button is clicked
             timedModalCloseBtn.addEventListener('click', hideTimedModal);
 
-            // Close the modal when clicking outside the content area
             timedModal.addEventListener('click', (event) => {
                 if (event.target === timedModal) {
                     hideTimedModal();
