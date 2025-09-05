@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://fpyf8.com/88/tag.min.js" data-zone="167719" async data-cfasync="false"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ================= SEO META TAGS ================= -->
-    <title>Movie Hub | Watch Unlimited Movies, TV Shows & Series Online in HD</title>
-    <meta name="description" content="Join Movie Hub to stream thousands of the latest movies, popular TV shows, and exclusive web series online. Enjoy unlimited entertainment in HD quality, anywhere, anytime.">
-    <meta name="keywords" content="movies, tv shows, web series, stream movies, watch online, movie hub, online streaming, HD movies, latest movies 2025, bollywood, bangla natok">
-    <link rel="canonical" href="https://your-movie-hub-domain.com/"> <!-- Replace with your actual domain -->
+    <title>MoviFlix® | Watch Unlimited Movies, TV Shows & Series Online in HD</title>
+    <meta name="description" content="Join MoviFlix® to stream thousands of the latest movies, popular TV shows, and exclusive web series online. Enjoy unlimited entertainment in HD quality, anywhere, anytime.">
+    <meta name="keywords" content="movies, tv shows, web series, stream movies, watch online, moviflix, online streaming, HD movies, latest movies 2025, bollywood, bangla natok">
+    <link rel="canonical" href="https://your-moviflix-domain.com/"> <!-- Replace with your actual domain -->
     <meta name="robots" content="index, follow">
-    <meta name="monetag" content="244a68ec51ce815b63112966a14acd2f">
 
     <!-- ================= OPEN GRAPH (FOR SOCIAL MEDIA) ================= -->
-    <meta property="og:title" content="Movie Hub | Watch Unlimited Movies, TV Shows & Series Online">
+    <meta property="og:title" content="MoviFlix® | Watch Unlimited Movies, TV Shows & Series Online">
     <meta property="og:description" content="Stream thousands of the latest movies, popular TV shows, and exclusive web series online in HD.">
     <meta property="og:image" content="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg"> <!-- A good preview image -->
-    <meta property="og:url" content="https://your-movie-hub-domain.com/"> <!-- Replace with your actual domain -->
+    <meta property="og:url" content="https://your-moviflix-domain.com/"> <!-- Replace with your actual domain -->
     <meta property="og:type" content="website">
 
     <!-- ================= TWITTER CARD (FOR TWITTER SHARING) ================= -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Movie Hub | Watch Unlimited Movies, TV Shows & Series Online">
+    <meta name="twitter:title" content="MoviFlix® | Watch Unlimited Movies, TV Shows & Series Online">
     <meta name="twitter:description" content="Stream thousands of the latest movies, popular TV shows, and exclusive web series online in HD.">
     <meta name="twitter:image" content="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg"> <!-- A good preview image -->
 
@@ -74,10 +72,6 @@
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
         }
-
-        body.modal-open {
-            overflow: hidden;
-        }
         
         #preloader {
             position: fixed;
@@ -117,22 +111,12 @@
             to { transform: rotate(360deg); }
         }
 
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             overflow: hidden;
         }
-        
-        header, main, footer {
-            transition: filter 0.35s ease-in-out;
-        }
-        .content-blur {
-            filter: blur(5px);
-            pointer-events: none;
-        }
-
 
         header {
             padding: 15px 0;
@@ -290,11 +274,10 @@
         }
 
         .hero {
-            /* MODIFIED: Changed to 16:9 aspect ratio for a widescreen look */
             width: 100%;
             height: auto;
             aspect-ratio: 16 / 9;
-            max-height: 90vh; /* Prevents it from being too tall on ultrawide screens */
+            max-height: 90vh;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                         url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
             position: relative;
@@ -393,7 +376,7 @@
         }
 
         .section {
-            padding: 100px 0;
+            padding: 60px 0; /* Reduced padding */
             scroll-margin-top: 80px;
         }
         #hindi-movies, #series, #unlimited {
@@ -406,7 +389,7 @@
 
         .section-title {
             font-size: 2.2rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Reduced margin */
             position: relative;
             padding-bottom: 15px;
             font-weight: 700;
@@ -426,7 +409,7 @@
 
         .section-subtitle {
             color: var(--gray-color);
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* Reduced margin */
             max-width: 700px;
             font-size: 1.1rem;
         }
@@ -584,90 +567,21 @@
         
         .unlimited-cta {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 40px; /* Reduced margin */
         }
-
-        .app-section {
-            background: var(--secondary-color);
-            border-radius: 15px;
-            margin: 40px 0;
-            padding: 60px 0;
-        }
-
-        .app-container {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .app-content {
-            flex: 1;
-        }
-
-        .app-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        .app-image img {
-            max-width: 350px;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-        }
-
-        .app-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .app-btn {
-            display: flex;
-            align-items: center;
-            background: #333; 
-            color: #fff; 
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .app-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .app-btn i {
-            font-size: 1.8rem;
-            margin-right: 12px;
-        }
-
-        .app-btn-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-btn-text span:first-child {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .app-btn-text span:last-child {
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
+        
         .picture-section {
-            margin: 60px 0;
+            padding: 60px 0;
             text-align: center;
         }
 
         .picture-section img {
-            width: 981px;
-            height: 363px;
-            object-fit: cover;
+            max-width: 981px;
+            width: 100%;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
         
         .newsletter {
@@ -727,14 +641,14 @@
         footer {
             background: #1a1a1a;
             color: #f5f5f1;
-            padding: 60px 0 20px;
+            padding: 50px 0 20px; /* Reduced padding */
         }
 
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* Reduced margin */
         }
 
         .footer-logo {
@@ -838,210 +752,9 @@
             transform: translateY(-3px);
         }
 
-        .cookie-consent-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            color: #fff;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10001; /* Must be higher than blurred content */
-            transform: translateY(100%);
-            transition: transform 0.5s ease-in-out;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .cookie-consent-banner.show {
-            transform: translateY(0);
-        }
-
-        .cookie-consent-banner p {
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .cookie-consent-banner a {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        .cookie-accept-btn {
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .cookie-accept-btn:hover {
-            background-color: #c11119;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-        }
-
-        .modal-content {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
-            position: relative;
-            animation: zoomIn 0.4s ease-out;
-        }
-
-        .modal-content h2 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-
-        .modal-content p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-
-        .close-btn {
-            color: var(--gray-color);
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .timed-modal {
-            display: none;
-            position: fixed;
-            z-index: 10002;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .timed-modal.show {
-            display: flex;
-        }
-
-        .timed-modal-content {
-            background-color: var(--secondary-color);
-            padding: 0;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 360px; 
-            text-align: center;
-            position: relative;
-            animation: zoomIn 0.4s ease-out;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .timed-modal-content img {
-            width: 100%;
-            height: auto;
-            vertical-align: middle;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .timed-modal-text {
-            padding: 25px;
-        }
-
-        .timed-modal-text h2 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-
-        .timed-modal-text p {
-            color: var(--gray-color);
-            margin-bottom: 20px;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        
-        .timed-modal-signup-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .timed-modal-signup-btn:hover {
-            background-color: #c11119;
-        }
-
-        .timed-modal .close-btn {
-            color: var(--gray-color);
-            background-color: transparent;
-            border-radius: 0;
-            width: auto;
-            height: auto;
-            line-height: 1;
-            text-align: center;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-        }
-        
-        body.dark-theme .timed-modal .close-btn {
-            color: var(--gray-color);
-        }
-
-        .timed-modal .close-btn:hover {
-            background-color: transparent;
-            color: var(--text-color);
-        }
-
-
         /* Responsive */
         @media (max-width: 992px) {
             .hero h1 { font-size: 2.8rem; }
-            .app-container { gap: 30px; }
-            .picture-section img { width: 100%; height: auto; max-height: 363px; }
             #search-input { width: 200px; }
             #search-input:focus { width: 220px; }
             .content-slider-navigation .swiper-button-prev, .content-slider-navigation .swiper-button-next { display: none; }
@@ -1068,12 +781,11 @@
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-            /* MODIFIED: Revert hero section for mobile */
             .hero {
                 height: auto;
                 padding: 150px 0 100px;
                 text-align: center;
-                aspect-ratio: auto; /* Revert aspect ratio on mobile */
+                aspect-ratio: auto;
             }
 
             .hero h1 { font-size: 2.2rem; }
@@ -1081,25 +793,16 @@
             .auto-slide-caption h3 { font-size: 1.5rem; }
             .auto-slide-caption p { font-size: 0.9rem; max-width: 90%; }
             .unlimited-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
-            .app-container { flex-direction: column; }
-            .app-content { order: 2; text-align: center; }
-            .app-buttons { justify-content: center; }
             .newsletter-form { flex-direction: column; }
             .newsletter-form input { border-radius: 5px; margin-bottom: 10px; }
             .newsletter-form button { border-radius: 5px; padding: 15px; }
-            .cookie-consent-banner { flex-direction: column; text-align: center; }
         }
 
         @media (max-width: 576px) {
             .movie-card { width: 240px; }
             .unlimited-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
             .section-title { font-size: 1.8rem; }
-            .app-buttons { flex-direction: column; }
-            .section { padding: 70px 0; scroll-margin-top: 60px; }
-            .modal-content { margin: 20% auto; padding: 20px; }
-            .timed-modal-content { max-width: 95%; }
-            .timed-modal-text h2 { font-size: 1.5rem; }
-            .timed-modal-text { padding: 20px; }
+            .section { padding: 50px 0; scroll-margin-top: 60px; }
         }
 
     </style>
@@ -1109,7 +812,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Movie Hub",
+      "name": "MoviFlix®",
       "url": "https://www.b2b8.top", 
       "potentialAction": {
         "@type": "SearchAction",
@@ -1122,7 +825,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Movie Hub",
+      "name": "MoviFlix®",
       "url": "https://www.b2b8.top/",
       "logo": "https://i.postimg.cc/PfKRYD1b/Generated-Image-August-29-2025-2-27-PM.jpg", 
       "sameAs": [
@@ -1152,11 +855,7 @@
         <div class="container header-container">
             <div class="logo">
                 <i class="fas fa-film" aria-hidden="true"></i>
-                Movie Hub
-            </div>
-             <!-- বিজ্ঞাপন কোড এখানে যুক্ত করা হয়েছে -->
-            <div class="header-ad">
-                <ins style="width: 468px;height:60px" data-width="468" data-height="60" class="i4434e91a10" data-domain="//data684.click" data-affquery="/4f3390e7a8135ddc7a44/4434e91a10/?placementName=default"><script src="//data684.click/js/responsive.js" async></script></ins>
+                MoviFlix®
             </div>
             <div class="search-container">
                 <i class="fas fa-search search-icon" aria-hidden="true"></i>
@@ -1170,7 +869,6 @@
                     <li><a href="#hindi-movies">Hindi Movies</a></li>
                     <li><a href="#series">TV Shows</a></li>
                     <li><a href="#unlimited">Unlimited</a></li>
-                    <li><a href="#app">Download App</a></li>
                 </ul>
             </nav>
 
@@ -1209,6 +907,14 @@
                 <div class="swiper-button-next"></div>
             </div>
         </section>
+
+        <!-- Ad Section -->
+        <section style="padding: 20px 0; text-align: center;">
+            <div class="container">
+                <ins style="width: 320px;height:50px; display: inline-block;" data-width="320" data-height="50" class="sfd994b7d33" data-domain="//data156.click" data-affquery="/47ec665e55c4327e2e86/fd994b7d33/?placementName=Website"><script src="//data156.click/js/responsive.js" async></script></ins>
+            </div>
+        </section>
+        <!-- End Ad Section -->
 
         <section class="section" id="movies">
             <div class="container">
@@ -1277,38 +983,11 @@
                 </div>
             </div>
         </section>
-
-        <section class="section app-section" id="app">
-            <div class="container app-container">
-                <div class="app-content">
-                    <h2 class="section-title">Download the Movie Hub App</h2>
-                    <p class="section-subtitle">Watch your favorite movies and TV shows on the go. Download the Movie Hub app now and enjoy unlimited entertainment anywhere, anytime.</p>
-                    <div class="app-buttons">
-                        <a href="#" class="app-btn">
-                            <i class="fab fa-apple" aria-hidden="true"></i>
-                            <div class="app-btn-text">
-                                <span>Download on the</span>
-                                <span>App Store</span>
-                            </div>
-                        </a>
-                        <a href="#" class="app-btn">
-                            <i class="fab fa-google-play" aria-hidden="true"></i>
-                            <div class="app-btn-text">
-                                <span>Get it on</span>
-                                <span>Google Play</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="app-image">
-                    <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png" alt="Movie Hub app interface shown on a mobile device" loading="lazy">
-                </div>
-            </div>
-        </section>
-
+        
         <section class="picture-section">
             <div class="container">
-                <img src="https://i.postimg.cc/dVQDcDLP/20250813-132445.jpg" alt="Promotional banner for Movie Hub's extensive library" loading="lazy">
+                <img src="https://i.postimg.cc/5t1WK3w5/Screenshot-20250905-125222-1.jpg" alt="Promotional banner for MoviFlix" loading="lazy">
+                <a href="https://data156.click/055e6a40879ddc773128/c59865dc04/?placementName=default" class="btn btn-lg">Sign Up Now</a>
             </div>
         </section>
 
@@ -1332,7 +1011,7 @@
             <div class="footer-container">
                 <div class="footer-about">
                     <a href="#" class="footer-logo">
-                        <i class="fas fa-film" aria-hidden="true"></i> Movie Hub
+                        <i class="fas fa-film" aria-hidden="true"></i> MoviFlix®
                     </a>
                     <p>The ultimate destination for movie lovers. Stream thousands of movies and TV shows in stunning quality.</p>
                     <div class="social-links">
@@ -1350,16 +1029,15 @@
                         <li><a href="#hindi-movies">Hindi Movies</a></li>
                         <li><a href="#series">TV Shows</a></li>
                         <li><a href="#unlimited">Unlimited</a></li>
-                        <li><a href="#app">Download App</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="javascript:void(0);" data-modal-target="terms-modal">Terms of Service</a></li>
-                        <li><a href="javascript:void(0);" data-modal-target="privacy-modal">Privacy Policy</a></li>
-                        <li><a href="javascript:void(0);" data-modal-target="cookie-modal">Cookie Policy</a></li>
-                        <li><a href="javascript:void(0);" data-modal-target="gdpr-modal">GDPR</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1373,37 +1051,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Movie Hub. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary-color);" aria-hidden="true"></i> by Movie Hub Team</p>
+                <p>&copy; 2025 MoviFlix®. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary-color);" aria-hidden="true"></i> by MoviFlix® Team</p>
             </div>
         </div>
     </footer>
 
     <div class="back-to-top" id="back-to-top" aria-label="Back to top of the page">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
-    </div>
-
-    <div class="cookie-consent-banner" id="cookie-banner">
-        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="javascript:void(0);" data-modal-target="cookie-modal">Learn More</a></p>
-        <button class="cookie-accept-btn" id="cookie-accept">Accept</button>
-    </div>
-
-    <!-- Modals -->
-    <div id="terms-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Terms of Service</h2><p>Welcome to Movie Hub! These terms and conditions outline the rules and regulations for the use of our website.</p><p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Movie Hub if you do not agree to take all of the terms and conditions stated on this page.</p></div></div>
-    <div id="privacy-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Privacy Policy</h2><p>Your privacy is important to us. It is Movie Hub's policy to respect your privacy regarding any information we may collect from you across our website.</p><p>We only retain collected information for as long as necessary to provide you with your requested service.</p></div></div>
-    <div id="cookie-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>Cookie Policy</h2><p>This site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience.</p><p>We use cookies for a variety of reasons. It is recommended that you leave on all cookies if you are not sure whether you need them or not.</p></div></div>
-    <div id="gdpr-modal" class="modal"><div class="modal-content"><span class="close-btn">&times;</span><h2>GDPR Information</h2><p>The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy.</p><p>You have the right to access, rectify, or erase your personal data under certain conditions.</p></div></div>
-
-    <div id="timed-modal" class="timed-modal">
-        <div class="timed-modal-content">
-            <span class="close-btn">&times;</span>
-            <img src="https://i.postimg.cc/VkyN4srt/Screenshot-20250831-230938-1.jpg" alt="Special Offer">
-            <div class="timed-modal-text">
-                <h2>Special Offer!</h2>
-                <p>Sign up now to get exclusive access to our latest releases.</p>
-                <!-- সাইন আপ বাটনে আপনার লিংক এখানে দিন -->
-                <a href="https://otieu.com/4/9397981" class="timed-modal-signup-btn">Sign Up Now</a>
-            </div>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -1620,83 +1274,6 @@
                         item.classList.add('active');
                     }
                 });
-            });
-            const cookieBanner = document.getElementById('cookie-banner');
-            const cookieAcceptButton = document.getElementById('cookie-accept');
-            if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => cookieBanner.classList.add('show'), 1500);
-            }
-            cookieAcceptButton.addEventListener('click', () => {
-                cookieBanner.classList.remove('show');
-                localStorage.setItem('cookiesAccepted', 'true');
-            });
-
-            // --- MODIFIED: MODAL LOGIC WITH BLUR EFFECT ---
-            
-            const pageElements = [
-                document.querySelector('header'),
-                document.querySelector('main'),
-                document.querySelector('footer'),
-                document.getElementById('back-to-top')
-            ];
-            
-            const modalTriggers = document.querySelectorAll('[data-modal-target]');
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    const modal = document.getElementById(trigger.getAttribute('data-modal-target'));
-                    if (modal) {
-                        pageElements.forEach(el => el.classList.add('content-blur'));
-                        modal.style.display = "block";
-                        document.body.classList.add('modal-open');
-                    }
-                });
-            });
-
-            function closeModal(modal) {
-                modal.style.display = "none";
-                if (!Array.from(document.querySelectorAll('.modal, .timed-modal')).some(m => m.style.display === 'block' || m.classList.contains('show'))) {
-                    pageElements.forEach(el => el.classList.remove('content-blur'));
-                    document.body.classList.remove('modal-open');
-                }
-            }
-
-            document.querySelectorAll('.modal').forEach(modal => {
-                const closeBtn = modal.querySelector('.close-btn');
-                if (closeBtn) {
-                    closeBtn.addEventListener('click', () => closeModal(modal));
-                }
-                window.addEventListener('click', (event) => {
-                    if (event.target == modal) {
-                        closeModal(modal);
-                    }
-                });
-            });
-
-            const timedModal = document.getElementById('timed-modal');
-            const timedModalCloseBtn = timedModal.querySelector('.close-btn');
-
-            const showTimedModal = () => {
-                pageElements.forEach(el => el.classList.add('content-blur'));
-                timedModal.classList.add('show');
-                document.body.classList.add('modal-open');
-            };
-
-            const hideTimedModal = () => {
-                timedModal.classList.remove('show');
-                if (!Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'block')) {
-                    pageElements.forEach(el => el.classList.remove('content-blur'));
-                    document.body.classList.remove('modal-open');
-                }
-            };
-
-            setTimeout(showTimedModal, 50000);
-
-            timedModalCloseBtn.addEventListener('click', hideTimedModal);
-
-            timedModal.addEventListener('click', (event) => {
-                if (event.target === timedModal) {
-                    hideTimedModal();
-                }
             });
 
         });
